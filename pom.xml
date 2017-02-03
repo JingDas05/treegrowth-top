@@ -8,11 +8,13 @@
     <artifactId>platform</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
-        <module>register-center</module>
+        <module>tg-register-center</module>
+        <module>tg-provider</module>
     </modules>
 
-    <name>treegrowth-parent</name>
+    <name>tg-parent</name>
     <description>cloud notes</description>
 
     <parent>

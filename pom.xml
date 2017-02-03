@@ -12,6 +12,7 @@
     <modules>
         <module>tg-register-center</module>
         <module>tg-provider</module>
+        <module>tg-consumer</module>
     </modules>
 
     <name>tg-parent</name>

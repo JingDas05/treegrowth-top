@@ -2,6 +2,9 @@ spring:
   application:
     name: tg-provider
 
+server:
+  port: 2222
+
 eureka:
   client:
     service-url:

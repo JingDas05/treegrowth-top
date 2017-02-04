@@ -1,4 +1,4 @@
-package top.treegrowth.web;
+package top.treegrowth.provider.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,7 +20,7 @@ public class ServiceInstanceRestController {
     private DiscoveryClient discoveryClient;
 
     @RequestMapping("/service-instances/{applicationName}")
-    public String serviceInstancesByApplicationName(@PathVariable("applicationName") String applicationName) {
-        return this.discoveryClient.getInstances(applicationName).toString();
+    public List<ServiceInstance> serviceInstancesByApplicationName(@PathVariable("applicationName") String applicationName) {
+        return this.discoveryClient.getInstances(applicationName);
     }
 }

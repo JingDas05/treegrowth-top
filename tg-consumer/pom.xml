@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>tg-common</artifactId>
+        </dependency>
+        <!--spring cloud-->
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>

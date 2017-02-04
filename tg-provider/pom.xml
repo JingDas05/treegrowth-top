@@ -13,10 +13,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>tg-common</artifactId>
+        </dependency>
+
+        <!--spring-cloud-->
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

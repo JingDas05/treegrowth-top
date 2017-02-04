@@ -17,12 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.treegrowth.web.ServiceInstanceRestController;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ServiceInstanceRestController.class, ProviderApplication.class},
+@SpringBootTest(classes = {ProviderApplication.class},
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class ServiceInstanceRestControllerTests {
@@ -32,7 +31,7 @@ public class ServiceInstanceRestControllerTests {
     @BeforeClass
     public static void startEureka() {
         eurekaServer = SpringApplication.run(EurekaServer.class,
-                "--server.port=8761",
+                "--server.port=1111",
                 "--eureka.instance.leaseRenewalIntervalInSeconds=1");
     }
 

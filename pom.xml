@@ -9,10 +9,16 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
     <modules>
         <module>tg-register-center</module>
         <module>tg-provider</module>
         <module>tg-consumer</module>
+        <module>tg-common</module>
     </modules>
 
     <name>tg-parent</name>
@@ -27,6 +33,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>top.treegrowth</groupId>
+                <artifactId>tg-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>

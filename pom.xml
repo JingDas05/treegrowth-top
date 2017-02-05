@@ -19,6 +19,7 @@
         <module>tg-provider</module>
         <module>tg-consumer</module>
         <module>tg-common</module>
+        <module>tg-redis-server</module>
     </modules>
 
     <name>tg-parent</name>

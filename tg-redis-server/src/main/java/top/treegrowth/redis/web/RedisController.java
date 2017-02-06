@@ -23,7 +23,7 @@ public class RedisController {
         redisDao.SetIdentifyCode(pureIdentifyCode);
     }
 
-    @RequestMapping(value = "/identifyCode/{phoneNum}", method = GET)
+    @RequestMapping(value = "/{phoneNum}", method = GET)
     public String GetIdentifyCode(@PathVariable(value = "phoneNum") String phoneNum) {
         return redisDao.GetIdentifyCode(phoneNum);
     }

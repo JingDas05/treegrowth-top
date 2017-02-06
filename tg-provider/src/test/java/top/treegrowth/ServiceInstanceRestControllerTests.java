@@ -22,7 +22,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderApplication.class},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
 public class ServiceInstanceRestControllerTests {
 

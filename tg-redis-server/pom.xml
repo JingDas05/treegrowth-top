@@ -12,10 +12,6 @@
     <artifactId>tg-redis-server</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-redis</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>top.treegrowth</groupId>
@@ -28,8 +24,25 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

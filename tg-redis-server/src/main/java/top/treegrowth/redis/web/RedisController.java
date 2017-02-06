@@ -19,13 +19,12 @@ public class RedisController {
     private RedisDao redisDao;
 
     @RequestMapping(value = "/identifyCode", method = POST)
-    public void SetIdentifyCode(@RequestBody PureIdentifyCode pureIdentifyCode) {
-        redisDao.SetIdentifyCode(pureIdentifyCode);
+    public void setIdentifyCode(@RequestBody PureIdentifyCode pureIdentifyCode) {
+        redisDao.setIdentifyCode(pureIdentifyCode);
     }
 
     @RequestMapping(value = "/{phoneNum}", method = GET)
-    public String GetIdentifyCode(@PathVariable(value = "phoneNum") String phoneNum) {
-        return redisDao.GetIdentifyCode(phoneNum);
+    public String getIdentifyCode(@PathVariable(value = "phoneNum") String phoneNum) {
+        return redisDao.getIdentifyCode(phoneNum);
     }
-
 }

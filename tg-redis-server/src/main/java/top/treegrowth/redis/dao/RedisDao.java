@@ -29,7 +29,7 @@ public class RedisDao {
     @Resource(name = "redisTemplate")
     ValueOperations<Object, Object> valOps;
 
-    public void SetIdentifyCode(PureIdentifyCode pureIdentifyCode) {
+    public void setIdentifyCode(PureIdentifyCode pureIdentifyCode) {
         valOpsStr.set(
                 pureIdentifyCode.getPhoneNum(),
                 pureIdentifyCode.getCode(),
@@ -37,7 +37,7 @@ public class RedisDao {
                 TimeUnit.SECONDS);
     }
 
-    public String GetIdentifyCode(String phoneNum) {
+    public String getIdentifyCode(String phoneNum) {
         String code = valOpsStr.get(phoneNum);
         if (code == null) {
             return "already expire";

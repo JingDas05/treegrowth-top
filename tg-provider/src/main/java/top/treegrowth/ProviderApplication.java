@@ -1,8 +1,10 @@
 package top.treegrowth;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
  * @author wusi
@@ -10,7 +12,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
+@EnableFeignClients
 public class ProviderApplication {
+
+    // TODO: 2017/2/6 这个地方添加了 @EnableFeignClients，不知道会对provider是否有影响，需要添加测试
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(ProviderApplication.class).web(true).run(args);

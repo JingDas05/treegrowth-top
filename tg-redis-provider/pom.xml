@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tg-redis-server</artifactId>
+    <artifactId>tg-redis-provider</artifactId>
 
     <dependencies>
 

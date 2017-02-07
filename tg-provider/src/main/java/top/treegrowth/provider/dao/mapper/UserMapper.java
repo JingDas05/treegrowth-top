@@ -1,19 +1,20 @@
 package top.treegrowth.provider.dao.mapper;
 
 import org.apache.ibatis.annotations.*;
+import top.treegrowth.model.user.User;
 
 @Mapper
 public interface UserMapper {
 
-    @Insert("INSERT into tg_users(id,name) VALUES(#{id},#{name})")
-    void insertNote(Note note);
+    @Insert("INSERT into tg_users(id,name,password,phone) VALUES(#{id},#{name},#{password},#{phone})")
+    void insertUser(User user);
 
     @Delete("DELETE FROM tg_users where id =#{id}")
-    void deleteNote(Long id);
+    void deleteUser(Long id);
 
     @Update("UPDATE tg_users SET id=#{id}, name=#{name}")
-    void updateNote(Note note);
+    void updateUser(User user);
 
     @Select("SELECT * from tg_users WHERE id=#{id}")
-    Note selectNote(Long id);
+    User selectUser(Long id);
 }

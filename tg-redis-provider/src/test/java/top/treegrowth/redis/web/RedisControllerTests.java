@@ -55,15 +55,15 @@ public class RedisControllerTests {
         pureIdentifyCode.setCode("5566");
         pureIdentifyCode.setExpiry(20L);
 
-        this.restTemplate.postForEntity("http://localhost:" + this.port + "/api/redis/identifyCode", pureIdentifyCode, null);
+        this.restTemplate.postForEntity("http://localhost:" + this.port + "/api/service/redis/identifyCode", pureIdentifyCode, null);
         ResponseEntity<String> response = this.restTemplate.getForEntity(
-                "http://localhost:" + this.port + "/api/redis/{phoneNum}",
+                "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
                 String.class, "15640909868");
         then(response.getBody()).isEqualTo("5566");
 
         Thread.sleep(21000);
         ResponseEntity<String> responseExpire = this.restTemplate.getForEntity(
-                "http://localhost:" + this.port + "/api/redis/{phoneNum}",
+                "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
                 String.class, "15640909868");
         then(responseExpire.getBody()).isEqualTo("already expire");
     }

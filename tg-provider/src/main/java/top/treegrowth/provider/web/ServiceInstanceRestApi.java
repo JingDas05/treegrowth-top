@@ -14,7 +14,7 @@ import java.util.List;
  * @version 20170203
  */
 @RestController
-public class ServiceInstanceRestController {
+public class ServiceInstanceRestApi {
 
     @Autowired
     private DiscoveryClient discoveryClient;

@@ -1,4 +1,4 @@
-package top.treegrowth.provider.service;
+package top.treegrowth.consumer.service;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @author wusi
  * @version 2017/2/7.
  */
-//@FeignClient("tg-redis-provider")
+@FeignClient("tg-redis-provider")
 public interface RedisService {
 
     @RequestMapping(value = "api/service/redis/identifyCode", method = POST)

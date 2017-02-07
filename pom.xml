@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        <postgresql.version>9.4.1208.jre7</postgresql.version>
     </properties>
 
     <modules>
@@ -19,7 +20,7 @@
         <module>tg-provider</module>
         <module>tg-consumer</module>
         <module>tg-common</module>
-        <module>tg-redis-server</module>
+        <module>tg-redis-provider</module>
         <module>tg-model</module>
     </modules>
 
@@ -51,6 +52,11 @@
                 <version>Camden.SR4</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

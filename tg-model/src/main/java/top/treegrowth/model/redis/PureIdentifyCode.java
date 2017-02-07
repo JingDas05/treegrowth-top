@@ -6,6 +6,14 @@ public class PureIdentifyCode {
     private String code;
     private Long expiry;
 
+    public PureIdentifyCode() {};
+
+    public PureIdentifyCode(String phoneNum, String code, Long expiry) {
+        this.phoneNum = phoneNum;
+        this.code = code;
+        this.expiry = expiry;
+    }
+
     public String getPhoneNum() {
         return phoneNum;
     }

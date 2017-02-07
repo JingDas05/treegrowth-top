@@ -1,4 +1,4 @@
-package top.treegrowth.service;
+package top.treegrowth.consumer.service;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;

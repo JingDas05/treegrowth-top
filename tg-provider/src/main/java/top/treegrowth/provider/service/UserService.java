@@ -1,15 +1,15 @@
 package top.treegrowth.provider.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import top.treegrowth.model.user.PureUser;
+import top.treegrowth.model.user.ReturnUser;
 
-@Service
-public class UserService {
+/**
+ * @author wusi
+ * @version 2017/2/7.
+ */
+public interface UserService {
 
-    @Autowired
-    RedisService redisService;
+    ReturnUser phoneRegister(PureUser pureUser) throws Exception;
 
-
-
-
+    void getIdentifyCode(String phone);
 }

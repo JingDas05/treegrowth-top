@@ -12,18 +12,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@RequestMapping(value = "api/redis")
-public class RedisController {
+public class RedisApi {
 
     @Autowired
     private RedisDao redisDao;
 
-    @RequestMapping(value = "/identifyCode", method = POST)
+    @RequestMapping(value = "api/service/redis/identifyCode", method = POST)
     public void setIdentifyCode(@RequestBody PureIdentifyCode pureIdentifyCode) {
         redisDao.setIdentifyCode(pureIdentifyCode);
     }
 
-    @RequestMapping(value = "/{phoneNum}", method = GET)
+    @RequestMapping(value = "api/service/redis/{phoneNum}", method = GET)
     public String getIdentifyCode(@PathVariable(value = "phoneNum") String phoneNum) {
         return redisDao.getIdentifyCode(phoneNum);
     }

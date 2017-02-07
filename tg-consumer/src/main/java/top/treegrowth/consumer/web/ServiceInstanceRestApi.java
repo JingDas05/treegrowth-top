@@ -1,15 +1,11 @@
-package top.treegrowth.web;
+package top.treegrowth.consumer.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import top.treegrowth.service.InstanceService;
+import top.treegrowth.consumer.service.InstanceService;
 
-import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -18,7 +14,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @version 20170203
  */
 @RestController
-public class ServiceInstanceRestController {
+public class ServiceInstanceRestApi {
 
     @Autowired
     private InstanceService instanceService;

@@ -20,7 +20,7 @@
         <module>tg-provider</module>
         <module>tg-consumer</module>
         <module>tg-common</module>
-        <module>tg-redis-provider</module>
+        <module>tg-redis</module>
         <module>tg-model</module>
     </modules>
 
@@ -44,6 +44,11 @@
             <dependency>
                 <groupId>top.treegrowth</groupId>
                 <artifactId>tg-model</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>top.treegrowth</groupId>
+                <artifactId>tg-redis</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

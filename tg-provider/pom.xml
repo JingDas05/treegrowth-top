@@ -16,11 +16,7 @@
         <!--module-->
         <dependency>
             <groupId>top.treegrowth</groupId>
-            <artifactId>tg-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>top.treegrowth</groupId>
-            <artifactId>tg-model</artifactId>
+            <artifactId>tg-redis</artifactId>
         </dependency>
 
         <!--spring-cloud-->

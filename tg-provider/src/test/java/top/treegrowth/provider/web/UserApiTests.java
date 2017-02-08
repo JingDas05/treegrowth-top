@@ -1,4 +1,4 @@
-package top.treegrowth.consumer.web;
+package top.treegrowth.provider.web;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

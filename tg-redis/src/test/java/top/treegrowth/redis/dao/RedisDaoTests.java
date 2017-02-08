@@ -1,4 +1,4 @@
-package top.treegrowth.redis.web;
+package top.treegrowth.redis.dao;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -15,15 +15,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.treegrowth.RedisServerApplication;
 import top.treegrowth.model.redis.PureIdentifyCode;
+import top.treegrowth.redis.config.RedisConfig;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {RedisServerApplication.class},
+@SpringBootTest(classes = {RedisDao.class, RedisConfig.class},
         webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class RedisControllerTests {
+public class RedisDaoTests {
 
     static ConfigurableApplicationContext context;
 

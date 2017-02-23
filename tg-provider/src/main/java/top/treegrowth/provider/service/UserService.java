@@ -2,6 +2,7 @@ package top.treegrowth.provider.service;
 
 import top.treegrowth.model.user.PureUser;
 import top.treegrowth.model.user.ReturnUser;
+import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 
 /**
  * @author wusi
@@ -9,7 +10,7 @@ import top.treegrowth.model.user.ReturnUser;
  */
 public interface UserService {
 
-    ReturnUser phoneRegister(PureUser pureUser) throws Exception;
+    ReturnUser phoneRegister(PureUser pureUser) throws ServiceException;
 
-    void getIdentifyCode(String phone);
+    String getIdentifyCode(String phone);
 }

@@ -10,6 +10,7 @@ import top.treegrowth.model.user.User;
 import top.treegrowth.provider.dao.mapper.UserMapper;
 import top.treegrowth.provider.service.CodeService;
 import top.treegrowth.provider.service.UserService;
+import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 import top.treegrowth.redis.dao.RedisDao;
 
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     CodeService codeService;
 
-    public ReturnUser phoneRegister(PureUser pureUser) throws Exception {
+    public ReturnUser phoneRegister(PureUser pureUser) throws ServiceException {
         String code = redisDao.getIdentifyCode(pureUser.getPhone());
         if (code == null || !Objects.equals(pureUser.getCode(), code)) {
             throw new InvalidParameterException(code);
@@ -44,9 +45,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void getIdentifyCode(String phone) {
-        String code = Generator.getCode(6);
+    public String getIdentifyCode(String phone) {
+        String code = Generator.getCode(999999);
         codeService.sendIdentifyCode(phone, code);
         redisDao.setIdentifyCode(new PureIdentifyCode(phone, code, 600L));
+        return code;
     }
 }

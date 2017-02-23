@@ -11,8 +11,6 @@ import javax.sql.DataSource;
 @Configuration
 public class MybatisConfig {
 
-
-
     @Bean
     @Autowired
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {

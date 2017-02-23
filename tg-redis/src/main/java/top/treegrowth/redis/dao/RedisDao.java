@@ -37,10 +37,6 @@ public class RedisDao {
     }
 
     public String getIdentifyCode(String phoneNum) {
-        String code = valOpsStr.get(phoneNum);
-        if (code == null) {
-            return "already expire";
-        }
-        return code;
+        return valOpsStr.get(phoneNum);
     }
 }

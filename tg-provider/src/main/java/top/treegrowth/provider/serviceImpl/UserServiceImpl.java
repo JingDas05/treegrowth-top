@@ -3,10 +3,10 @@ package top.treegrowth.provider.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.treegrowth.common.utils.Generator;
+import top.treegrowth.model.entity.User;
 import top.treegrowth.model.redis.PureIdentifyCode;
 import top.treegrowth.model.user.PureUser;
 import top.treegrowth.model.user.ReturnUser;
-import top.treegrowth.model.user.User;
 import top.treegrowth.provider.dao.mapper.UserMapper;
 import top.treegrowth.provider.service.CodeService;
 import top.treegrowth.provider.service.UserService;
@@ -32,10 +32,10 @@ public class UserServiceImpl implements UserService {
     CodeService codeService;
 
     public ReturnUser phoneRegister(PureUser pureUser) throws ServiceException {
-        String code = redisDao.getIdentifyCode(pureUser.getPhone());
-        if (code == null || !Objects.equals(pureUser.getCode(), code)) {
-            throw new InvalidParameterException(code);
-        }
+//        String code = redisDao.getIdentifyCode(pureUser.getPhone());
+//        if (code == null || !Objects.equals(pureUser.getCode(), code)) {
+//            throw new InvalidParameterException(code);
+//        }
         User user = new User();
         user.setId(Generator.getId());
         user.setPassword(pureUser.getPassword());

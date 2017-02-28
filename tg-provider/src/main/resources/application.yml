@@ -37,7 +37,15 @@ spring:
 server:
   port: 2222
 
+mybatis:
+    type-aliases-package: top.treegrowth.model.entity
+    mapper-locations: classpath:mapper/*.xml
+
+pagehelper:
+    helperDialect: postgresql
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:1111/eureka/
+

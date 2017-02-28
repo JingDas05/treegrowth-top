@@ -1,7 +1,8 @@
 package top.treegrowth.provider.dao.mapper;
 
 import org.apache.ibatis.annotations.*;
-import top.treegrowth.model.user.User;
+import top.treegrowth.model.entity.User;
+
 
 @Mapper
 public interface UserMapper {

@@ -1,5 +1,7 @@
 package top.treegrowth.model.user;
 
+import top.treegrowth.model.entity.User;
+
 import java.io.Serializable;
 
 public class ReturnUser implements Serializable {

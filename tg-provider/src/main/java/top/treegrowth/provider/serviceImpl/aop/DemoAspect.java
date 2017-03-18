@@ -24,6 +24,11 @@ public class DemoAspect {
     //前置通知，自动注入joinPoint,注意aspect语法
     @Before(value = "pointCut(demo)", argNames = "joinPoint, demo")
     public void before(JoinPoint joinPoint, Demo demo) {
-
+        //切点方法入参
+        joinPoint.getArgs();
+        //获得切点方法签名
+        joinPoint.getSignature();
+        //获得切点所在类
+        joinPoint.getTarget();
     }
 }

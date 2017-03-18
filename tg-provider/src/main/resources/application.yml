@@ -28,6 +28,9 @@ spring:
       timeout: 0
   profiles:
     active: dev
+  batch:
+    job:
+      enabled: false
 #  jpa:
 #    generate-ddl: true
 #    show-sql: true

@@ -33,7 +33,7 @@ public class ScheduleCustom {
      * job执行的入口，相同的job和step执行之后，batchStatus会变成complicated,不会再执行
      * 传入jobParameters ,参数是当前时间，这样每次调用都会执行，用jobParametersBuilder生成jobParameters
      */
-    @Scheduled(cron = "0/15 * * * * *")
+//    @Scheduled(cron = "0/15 * * * * *")
     public void calculateHotScore() {
         try {
             jobLauncher.run(job, jobParametersBuilder.addDate("time", new Date()).toJobParameters());

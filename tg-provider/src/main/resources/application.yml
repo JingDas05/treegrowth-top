@@ -41,8 +41,8 @@ server:
   port: 2222
 
 mybatis:
-    type-aliases-package: top.treegrowth.model.entity
-    mapper-locations: classpath:mapper/*.xml
+#    type-aliases-package: top.treegrowth.model.entity
+    mapper-locations: classpath:/mapper/*.xml
 
 pagehelper:
     helperDialect: postgresql

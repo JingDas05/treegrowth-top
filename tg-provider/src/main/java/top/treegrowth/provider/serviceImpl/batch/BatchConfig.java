@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import top.treegrowth.provider.serviceImpl.batch.model.In;
 import top.treegrowth.provider.serviceImpl.batch.model.Out;
 import top.treegrowth.provider.serviceImpl.batch.step.ItemProcess;
-import top.treegrowth.provider.serviceImpl.batch.step.ItemReaderCustom;
+import top.treegrowth.provider.serviceImpl.batch.step.ItemReaderFactory;
 import top.treegrowth.provider.serviceImpl.batch.step.ItemWriterCus;
 
 /**
@@ -26,9 +26,10 @@ public class BatchConfig {
 
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
-
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
+    @Autowired
+    private ItemReaderFactory itemReaderFactory;
 
     @Bean
     public Job calculateJob() {
@@ -46,7 +47,7 @@ public class BatchConfig {
     private Step caseHostScoreStep() {
         return stepBuilderFactory.get("stepName")
                 .<In, Out>chunk(50)
-                .reader(new ItemReaderCustom().getReader("queryId", "redisKey", "mybatisParams"))
+                .reader(itemReaderFactory.getReader("getDreamBy", "wusi", "123456"))
                 .processor(process())
                 .writer(writer())
                 .build();

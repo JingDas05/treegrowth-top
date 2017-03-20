@@ -10,10 +10,11 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import top.treegrowth.provider.serviceImpl.batch.model.In;
 import top.treegrowth.provider.serviceImpl.batch.model.Out;
 import top.treegrowth.provider.serviceImpl.batch.step.ItemProcess;
-import top.treegrowth.provider.serviceImpl.batch.step.ItemReaderFactory;
+import top.treegrowth.provider.serviceImpl.batch.step.ItemReaderCus;
 import top.treegrowth.provider.serviceImpl.batch.step.ItemWriterCus;
 
 /**
@@ -28,8 +29,6 @@ public class BatchConfig {
     private StepBuilderFactory stepBuilderFactory;
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
-    @Autowired
-    private ItemReaderFactory itemReaderFactory;
 
     @Bean
     public Job calculateJob() {
@@ -40,23 +39,29 @@ public class BatchConfig {
     }
 
     @Bean
-    public JobParametersBuilder initJobParametersBuilder() {
-        return new JobParametersBuilder();
-    }
-
     private Step caseHostScoreStep() {
         return stepBuilderFactory.get("stepName")
                 .<In, Out>chunk(50)
-                .reader(itemReaderFactory.getReader("getDreamBy", "wusi", "123456"))
+                .reader(reader().getReader("getDreamBy", "wusi", "123456"))
                 .processor(process())
                 .writer(writer())
                 .build();
     }
 
+    @Scope("step")
+    @Bean
+    private ItemReaderCus reader() {
+        return new ItemReaderCus();
+    }
+
+    @Scope("step")
+    @Bean
     private ItemProcess process() {
         return new ItemProcess();
     }
 
+    @Scope("step")
+    @Bean
     private ItemWriterCus writer() {
         return new ItemWriterCus();
     }

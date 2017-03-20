@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-//@MapperScan(basePackages = {"top.treegrowth.provider.dao.top.treegrowth.mapper"})
+@MapperScan(basePackages = {"top.treegrowth.provider.dao.top.treegrowth.mapper"})
 public class ProviderApplication {
 
 

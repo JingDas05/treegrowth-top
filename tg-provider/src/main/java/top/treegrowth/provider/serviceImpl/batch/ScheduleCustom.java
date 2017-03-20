@@ -24,19 +24,16 @@ public class ScheduleCustom {
     @Autowired
     Job job;
 
-    @Autowired
-    JobParametersBuilder jobParametersBuilder;
-
     /**
      * cron 现在是每15s执行一次
-     *
+     * <p>
      * job执行的入口，相同的job和step执行之后，batchStatus会变成complicated,不会再执行
      * 传入jobParameters ,参数是当前时间，这样每次调用都会执行，用jobParametersBuilder生成jobParameters
      */
 //    @Scheduled(cron = "0/15 * * * * *")
     public void calculateHotScore() {
         try {
-            jobLauncher.run(job, jobParametersBuilder.addDate("time", new Date()).toJobParameters());
+            jobLauncher.run(job, new JobParametersBuilder().addDate("time", new Date()).toJobParameters());
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("批量更新出现问题，请检查batch");

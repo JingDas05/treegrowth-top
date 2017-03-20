@@ -18,7 +18,7 @@ import java.util.Set;
  * @version 2017/3/18 16:10
  */
 @Component
-public class ItemReaderFactory {
+public class ItemReaderCus {
 
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
@@ -41,12 +41,11 @@ public class ItemReaderFactory {
          </foreach>
          </select>
          */
-        reader.setQueryId(queryId);
-
+        reader.setQueryId("#{jobParameters['queryId']}");
         //从redis 取数据集合
-        Set ids = redisDao.getSet(redisSetKey);
+        Set ids = redisDao.getSet("#{jobParameters['redisSetKey']}");
         Map<String, Object> params = new HashMap<>();
-        params.put(paramName, ids);
+        params.put("#{jobParameters['paramName']}", ids);
         reader.setParameterValues(params);
         reader.setSqlSessionFactory(sqlSessionFactory);
         return reader;

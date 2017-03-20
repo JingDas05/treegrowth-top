@@ -38,7 +38,6 @@ public class BatchConfig {
                 .build();
     }
 
-    @Bean
     private Step caseHostScoreStep() {
         return stepBuilderFactory.get("stepName")
                 .<In, Out>chunk(50)

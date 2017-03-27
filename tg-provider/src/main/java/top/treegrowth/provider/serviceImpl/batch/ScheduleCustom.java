@@ -33,7 +33,11 @@ public class ScheduleCustom {
 //    @Scheduled(cron = "0/15 * * * * *")
     public void calculateHotScore() {
         try {
-            jobLauncher.run(job, new JobParametersBuilder().addDate("time", new Date()).toJobParameters());
+            jobLauncher.run(job, new JobParametersBuilder()
+                    .addDate("time", new Date())
+                    .addString("queryId", "value")
+                    .addString("setKey", "value")
+                    .toJobParameters());
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("批量更新出现问题，请检查batch");

@@ -1,14 +1,25 @@
 package top.treegrowth.model.entity;
 
+import java.util.Date;
+
 /**
  * @author wusi
  * @version 2017/3/18 19:25.
  */
 public class Dream {
 
+    private String id;
     private String name;
     private String content;
-    private String time;
+    private Date createTime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -26,11 +37,11 @@ public class Dream {
         this.content = content;
     }
 
-    public String getTime() {
-        return time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

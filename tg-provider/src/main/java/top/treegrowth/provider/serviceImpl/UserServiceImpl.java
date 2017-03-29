@@ -13,10 +13,6 @@ import top.treegrowth.provider.service.UserService;
 import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 import top.treegrowth.redis.dao.RedisDao;
 
-
-import java.security.InvalidParameterException;
-import java.util.Objects;
-
 /**
  * @author wusi
  * @version 2017/2/7.
@@ -37,7 +33,7 @@ public class UserServiceImpl implements UserService {
 //            throw new InvalidParameterException(code);
 //        }
         User user = new User();
-        user.setId(Generator.getId());
+        user.setId(Generator.uuid());
         user.setPassword(pureUser.getPassword());
         user.setPhone(pureUser.getPhone());
         userMapper.insertUser(user);

@@ -2,6 +2,7 @@ package top.treegrowth.provider.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.model.entity.Dream;
@@ -21,7 +22,7 @@ public class DreamApi {
     private DreamService dreamService;
 
     @RequestMapping(value = "/create", method = POST)
-    public void addDream(Dream dream) {
+    public void addDream(@RequestBody Dream dream) {
         dreamService.add(dream);
     }
 

@@ -7,7 +7,7 @@ public class Generator {
 
     private static final Random random = new Random();
 
-    public static String getId() {
+    public static String uuid() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 

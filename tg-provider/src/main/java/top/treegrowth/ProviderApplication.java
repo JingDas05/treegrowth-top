@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ImportResource
-//@MapperScan(basePackages = {"top.treegrowth.provider.dao.top.treegrowth.mapper"})
+@MapperScan(basePackages = {"top.treegrowth.provider.dao.top.treegrowth.mapper"})
 public class ProviderApplication {
 
 

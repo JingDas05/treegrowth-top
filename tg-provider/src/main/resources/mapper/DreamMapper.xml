@@ -6,36 +6,47 @@
         <id property="id" column="C_ID" jdbcType="CHAR"/>
         <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
         <result property="content" column="C_CONTENT" jdbcType="VARCHAR"/>
+        <result property="createTime" column="D_CREATE_TIME" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <sql id="tableName">
+       db_blog.t_dream
+    </sql>
+
     <insert id="addDream" parameterType="top.treegrowth.model.entity.Dream">
-        insert into schema_dream.t_dream
+        insert into
+        <include refid="tableName"/>
         (C_ID,
         C_NAME,
-        C_CONTENT)
+        C_CONTENT,
+        D_CREATE_TIME)
         values
         (#{id, jdbcType=CHAR},
         #{name, jdbcType=VARCHAR},
-        #{content, jdbcType=VARCHAR})
+        #{content, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP})
     </insert>
 
-    <!--<delete id="deleteBy">-->
-		<!--delete from schema_dream.t_dream-->
-		<!--where C_ID = #{id}-->
-	<!--</delete>-->
+    <delete id="deleteBy">
+        delete from
+        <include refid="tableName"/>
+        where C_ID = #{id}
+    </delete>
 
-    <!--<update id="update" parameterType="top.treegrowth.model.entity.Dream">-->
-		<!--update schema_dream.t_dream-->
-		<!--set-->
-            <!--C_ID = #{id, jdbcType=CHAR},-->
-            <!--C_NAME = #{name, jdbcType=VARCHAR},-->
-            <!--C_CONTENT = #{content, jdbcType=VARCHAR}-->
-        <!--where C_ID = #{id}-->
-	<!--</update>-->
+    <update id="update" parameterType="top.treegrowth.model.entity.Dream">
+        update
+        <include refid="tableName"/>
+        set
+        C_ID = #{id, jdbcType=CHAR},
+        C_NAME = #{name, jdbcType=VARCHAR},
+        C_CONTENT = #{content, jdbcType=VARCHAR}
+        where C_ID = #{id}
+    </update>
 
     <select id="getDreamBy" parameterType="java.lang.String" resultMap="dream">
         select C_ID, C_NAME, C_CONTENT
-        from schema_dream.t_dream
+        from
+        <include refid="tableName"/>
         where C_ID = #{id}
     </select>
 </mapper>

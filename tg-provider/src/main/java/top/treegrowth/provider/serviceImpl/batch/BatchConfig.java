@@ -99,7 +99,7 @@ public class BatchConfig {
 
     @Bean
     @StepScope
-    private ItemProcess process() {
+    public ItemProcess process() {
         return new ItemProcess();
     }
 }

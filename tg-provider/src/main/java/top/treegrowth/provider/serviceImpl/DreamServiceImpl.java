@@ -2,9 +2,12 @@ package top.treegrowth.provider.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.treegrowth.common.utils.Generator;
 import top.treegrowth.model.entity.Dream;
 import top.treegrowth.provider.dao.mapper.DreamMapper;
 import top.treegrowth.provider.service.DreamService;
+
+import static top.treegrowth.common.utils.Generator.uuid;
 
 /**
  * @author wusi
@@ -18,6 +21,7 @@ public class DreamServiceImpl implements DreamService {
 
     @Override
     public void add(Dream dream) {
+        dream.setId(uuid());
         dreamMapper.addDream(dream);
     }
 

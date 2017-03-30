@@ -1,25 +1,26 @@
-package top.treegrowth.model.entity;
+package top.treegrowth.provider.serviceImpl.bo;
 
-import java.util.Date;
+import top.treegrowth.model.entity.Diary;
+
+import java.io.Serializable;
 
 /**
  * @author wusi
- * @version 2017/3/30 12:55
+ * @version 2017/3/31 7:01.
  */
-public class Diary {
+public class DiaryPure implements Serializable {
 
-    private String id;
+    private static final long serialVersionUID = 8457059822832757385L;
     private String name;
-    private Date createTime;
     private String description;
     private String createUserId;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public Diary toDiary() {
+        Diary diary = new Diary();
+        diary.setName(this.getName());
+        diary.setDescription(this.getDescription());
+        diary.setCreateUserId(this.getCreateUserId());
+        return diary;
     }
 
     public String getName() {
@@ -28,14 +29,6 @@ public class Diary {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public String getDescription() {

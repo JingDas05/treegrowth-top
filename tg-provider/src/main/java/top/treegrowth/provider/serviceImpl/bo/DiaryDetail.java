@@ -1,13 +1,15 @@
-package top.treegrowth.model.entity;
+package top.treegrowth.provider.serviceImpl.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author wusi
- * @version 2017/3/30 12:55
+ * @version 2017/3/31 7:03.
  */
-public class Diary {
+public class DiaryDetail implements Serializable{
 
+    private static final long serialVersionUID = 6393521194095434227L;
     private String id;
     private String name;
     private Date createTime;

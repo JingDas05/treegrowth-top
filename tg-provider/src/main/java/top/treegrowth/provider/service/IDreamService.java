@@ -6,7 +6,7 @@ import top.treegrowth.model.entity.Dream;
  * @author wusi
  * @version 2017/3/18 19:55.
  */
-public interface DreamService {
+public interface IDreamService {
 
     void add(Dream dream);
 

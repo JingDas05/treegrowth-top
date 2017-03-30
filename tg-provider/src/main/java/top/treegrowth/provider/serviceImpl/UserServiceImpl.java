@@ -8,8 +8,8 @@ import top.treegrowth.model.redis.PureIdentifyCode;
 import top.treegrowth.model.user.PureUser;
 import top.treegrowth.model.user.ReturnUser;
 import top.treegrowth.provider.dao.mapper.UserMapper;
-import top.treegrowth.provider.service.CodeService;
-import top.treegrowth.provider.service.UserService;
+import top.treegrowth.provider.service.ICodeService;
+import top.treegrowth.provider.service.IUserService;
 import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 import top.treegrowth.redis.dao.RedisDao;
 
@@ -18,14 +18,14 @@ import top.treegrowth.redis.dao.RedisDao;
  * @version 2017/2/7.
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     RedisDao redisDao;
     @Autowired
     UserMapper userMapper;
     @Autowired
-    CodeService codeService;
+    ICodeService ICodeService;
 
     public ReturnUser phoneRegister(PureUser pureUser) throws ServiceException {
 //        String code = redisDao.getIdentifyCode(pureUser.getPhone());
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getIdentifyCode(String phone) {
         String code = Generator.getCode(999999);
-        codeService.sendIdentifyCode(phone, code);
+        ICodeService.sendIdentifyCode(phone, code);
         redisDao.setIdentifyCode(new PureIdentifyCode(phone, code, 600L));
         return code;
     }

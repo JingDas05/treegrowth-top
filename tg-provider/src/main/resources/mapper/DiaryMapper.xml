@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.treegrowth.provider.dao.mapper.DiaryMapper">
+
+    <resultMap id="diary" type="top.treegrowth.model.entity.Diary">
+        <id property="id" column="C_ID" jdbcType="CHAR"/>
+        <result property="createUserId" column="C_CREATE_USER_ID" jdbcType="CHAR"/>
+        <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
+        <result property="createTime" column="D_CREATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="description" column="C_DESCRIPTION" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="tableName">
+        db_blog.t_diary
+    </sql>
+
+    <insert id="createDiary" parameterType="top.treegrowth.model.entity.Diary">
+        INSERT INTO
+        <include refid="tableName"/>
+        (C_ID,
+        C_CREATE_USER_ID,
+        C_NAME,
+        D_CREATE_TIME,
+        C_DESCRIPTION)
+        VALUES
+        (#{id, jdbcType=CHAR},
+        #{createUserId, jdbcType=CHAR},
+        #{name, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{description, jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteBy">
+        delete from
+        <include refid="tableName"/>
+        where C_ID = #{id}
+    </delete>
+
+    <update id="update" parameterType="top.treegrowth.model.entity.Dream">
+        update
+        <include refid="tableName"/>
+        set
+        C_ID = #{id, jdbcType=CHAR},
+        C_NAME = #{name, jdbcType=VARCHAR},
+        C_CONTENT = #{content, jdbcType=VARCHAR}
+        where C_ID = #{id}
+    </update>
+
+    <select id="getDreamBy" parameterType="java.lang.String" resultMap="dream">
+        select C_ID, C_NAME, C_CONTENT
+        from
+        <include refid="tableName"/>
+        where C_ID = #{id}
+    </select>
+</mapper>

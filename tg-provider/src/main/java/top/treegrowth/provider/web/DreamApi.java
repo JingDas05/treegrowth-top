@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.model.entity.Dream;
-import top.treegrowth.provider.service.DreamService;
+import top.treegrowth.provider.service.IDreamService;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -19,15 +19,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class DreamApi {
 
     @Autowired
-    private DreamService dreamService;
+    private IDreamService IDreamService;
 
     @RequestMapping(value = "/create", method = POST)
     public void addDream(@RequestBody Dream dream) {
-        dreamService.add(dream);
+        IDreamService.add(dream);
     }
 
     @RequestMapping(value = "/{id}", method = GET)
     public void addDream(@PathVariable String id) {
-        dreamService.getBy(id);
+        IDreamService.getBy(id);
     }
 }

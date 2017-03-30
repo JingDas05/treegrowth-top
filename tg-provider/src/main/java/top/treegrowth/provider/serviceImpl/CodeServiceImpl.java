@@ -1,6 +1,5 @@
 package top.treegrowth.provider.serviceImpl;
 
-import com.google.common.base.Strings;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
@@ -9,7 +8,7 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import top.treegrowth.provider.service.CodeService;
+import top.treegrowth.provider.service.ICodeService;
 import top.treegrowth.provider.serviceImpl.exception.AaliApiException;
 import top.treegrowth.provider.serviceImpl.exception.ForbiddenException;
 import top.treegrowth.provider.serviceImpl.exception.ServiceException;
@@ -22,7 +21,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
  * @version 2017/2/7.
  */
 @Service
-public class CodeServiceImpl implements CodeService {
+public class CodeServiceImpl implements ICodeService {
 
     @Autowired
     private RedisDao redisDao;

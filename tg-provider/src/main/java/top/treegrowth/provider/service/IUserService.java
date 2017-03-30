@@ -8,7 +8,7 @@ import top.treegrowth.provider.serviceImpl.exception.ServiceException;
  * @author wusi
  * @version 2017/2/7.
  */
-public interface UserService {
+public interface IUserService {
 
     ReturnUser phoneRegister(PureUser pureUser) throws ServiceException;
 

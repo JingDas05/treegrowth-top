@@ -2,32 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.treegrowth.provider.dao.mapper.DiaryMapper">
 
-    <resultMap id="diary" type="top.treegrowth.model.entity.Diary">
+    <resultMap id="page" type="top.treegrowth.model.entity.Page">
         <id property="id" column="C_ID" jdbcType="CHAR"/>
-        <result property="createUserId" column="C_CREATE_USER_ID" jdbcType="CHAR"/>
+        <result property="diaryId" column="C_DIARY_ID" jdbcType="CHAR"/>
         <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
         <result property="createTime" column="D_CREATE_TIME" jdbcType="TIMESTAMP"/>
-        <result property="description" column="C_DESCRIPTION" jdbcType="VARCHAR"/>
+        <result property="mind" column="C_MIND" jdbcType="VARCHAR"/>
+        <result property="content" column="C_CONTENT" jdbcType="VARCHAR"/>
+        <result property="weather" column="C_WEATHER" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="tableName">
-        db_blog.t_diary
+        db_blog.t_page
     </sql>
 
-    <insert id="createDiary" parameterType="top.treegrowth.model.entity.Diary">
+    <insert id="createPage" parameterType="top.treegrowth.model.entity.Page">
         INSERT INTO
         <include refid="tableName"/>
         (C_ID,
-        C_CREATE_USER_ID,
+        C_DIARY_ID,
         C_NAME,
         D_CREATE_TIME,
-        C_DESCRIPTION)
+        C_MIND,)
+        C_CONTENT,)
+        C_WEATHER)
         VALUES
         (#{id, jdbcType=CHAR},
-        #{createUserId, jdbcType=CHAR},
+        #{diaryId, jdbcType=CHAR},
         #{name, jdbcType=VARCHAR},
         #{createTime, jdbcType=TIMESTAMP},
-        #{description, jdbcType=VARCHAR})
+        #{mind, jdbcType=VARCHAR},
+        #{content, jdbcType=VARCHAR},
+        #{weather, jdbcType=VARCHAR})
     </insert>
 
     <delete id="deleteBy">
@@ -36,7 +42,7 @@
         where C_ID = #{id}
     </delete>
 
-    <update id="update" parameterType="top.treegrowth.model.entity.Dream">
+    <update id="updateBy" parameterType="top.treegrowth.model.entity.Dream">
         update
         <include refid="tableName"/>
         set
@@ -49,10 +55,10 @@
         where C_ID = #{id}
     </update>
 
-    <select id="getDreamBy" parameterType="java.lang.String" resultMap="diary">
-        select C_ID, C_CREATE_USER_ID, C_NAME, D_CREATE_TIME, C_DESCRIPTION
+    <select id="getPageBy" parameterType="java.lang.String" resultMap="page">
+        select C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
         from
         <include refid="tableName"/>
-        where C_ID = #{id}
+        where C_ID = #{pageId}
     </select>
 </mapper>

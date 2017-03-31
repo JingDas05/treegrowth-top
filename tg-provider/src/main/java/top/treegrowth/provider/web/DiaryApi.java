@@ -21,7 +21,7 @@ public class DiaryApi {
     @Autowired
     private IDiaryService diaryService;
 
-    @RequestMapping(method = POST)
+    @RequestMapping(value = "/create", method = POST)
     public DiaryDetail createDiary(@RequestBody DiaryPure diaryPure) {
         return diaryService.createDiary(diaryPure);
     }

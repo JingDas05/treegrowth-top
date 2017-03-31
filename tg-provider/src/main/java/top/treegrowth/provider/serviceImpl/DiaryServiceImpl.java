@@ -2,6 +2,7 @@ package top.treegrowth.provider.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.treegrowth.model.entity.Diary;
 import top.treegrowth.provider.dao.mapper.DiaryMapper;
 import top.treegrowth.provider.service.IDiaryService;
@@ -36,6 +37,7 @@ public class DiaryServiceImpl implements IDiaryService {
         return fillInWithUserState(diaryDetail, userId);
     }
 
+    @Transactional
     @Override
     public DiaryDetail createDiary(DiaryPure diaryPure) {
         Diary diary = diaryPure.toDiary();

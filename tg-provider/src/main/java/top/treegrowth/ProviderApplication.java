@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author wusi
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ImportResource
+@EnableTransactionManagement
 //@MapperScan(basePackages = {"top.treegrowth.provider.dao.top.treegrowth.mapper"})
 public class ProviderApplication {
 

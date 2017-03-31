@@ -9,10 +9,10 @@ import java.util.Date;
 public class Diary {
 
     private String id;
+    private String createUserId;
     private String name;
     private Date createTime;
     private String description;
-    private String createUserId;
 
     public String getId() {
         return id;
@@ -20,6 +20,14 @@ public class Diary {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId;
     }
 
     public String getName() {
@@ -44,13 +52,5 @@ public class Diary {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
     }
 }

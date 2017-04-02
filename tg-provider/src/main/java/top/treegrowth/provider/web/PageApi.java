@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.provider.service.IPageService;
 import top.treegrowth.provider.serviceImpl.bo.PageDetail;
 import top.treegrowth.provider.serviceImpl.bo.PagePure;
+import top.treegrowth.provider.serviceImpl.bo.PagesReq;
+import top.treegrowth.provider.serviceImpl.bo.PagesResponse;
+
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -24,5 +28,10 @@ public class PageApi {
     @RequestMapping(value = "/create", method = POST)
     public PageDetail createPage(@RequestBody PagePure pagePure) {
         return pageService.createPage(pagePure);
+    }
+
+    @RequestMapping(value = "/getByPeriod", method = POST)
+    public PagesResponse<List<PageDetail>> createPage(@RequestBody PagesReq pagesReq) {
+        return pageService.getPagesBetween(pagesReq);
     }
 }

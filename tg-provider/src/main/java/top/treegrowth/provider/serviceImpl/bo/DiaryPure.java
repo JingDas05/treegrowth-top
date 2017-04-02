@@ -13,13 +13,13 @@ public class DiaryPure implements Serializable {
     private static final long serialVersionUID = 8457059822832757385L;
     private String name;
     private String description;
-    private String createUserId;
+    private String authorId;
 
     public Diary toDiary() {
         Diary diary = new Diary();
         diary.setName(this.getName());
         diary.setDescription(this.getDescription());
-        diary.setCreateUserId(this.getCreateUserId());
+        diary.setAuthorId(this.getAuthorId());
         return diary;
     }
 
@@ -39,11 +39,11 @@ public class DiaryPure implements Serializable {
         this.description = description;
     }
 
-    public String getCreateUserId() {
-        return createUserId;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 }

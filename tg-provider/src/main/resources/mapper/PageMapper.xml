@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.treegrowth.provider.dao.mapper.DiaryMapper">
+<mapper namespace="top.treegrowth.provider.dao.mapper.PageMapper">
 
     <resultMap id="page" type="top.treegrowth.model.entity.Page">
         <id property="id" column="C_ID" jdbcType="CHAR"/>
@@ -23,8 +23,8 @@
         C_DIARY_ID,
         C_NAME,
         D_CREATE_TIME,
-        C_MIND,)
-        C_CONTENT,)
+        C_MIND,
+        C_CONTENT,
         C_WEATHER)
         VALUES
         (#{id, jdbcType=CHAR},
@@ -47,7 +47,7 @@
         <include refid="tableName"/>
         set
         C_ID = #{id, jdbcType=CHAR},
-        C_CREATE_USER_ID = #{createUserId, jdbcType=CHAR},
+        C_CREATE_USER_ID = #{authorId, jdbcType=CHAR},
         C_NAME = #{name, jdbcType=VARCHAR},
         C_CONTENT = #{content, jdbcType=VARCHAR}
         D_CREATE_TIME = #{createTime, jdbcType=TIMESTAMP}
@@ -55,10 +55,18 @@
         where C_ID = #{id}
     </update>
 
-    <select id="getPageBy" parameterType="java.lang.String" resultMap="page">
+    <select id="getPagesBy" parameterType="java.lang.String" resultMap="page">
         select C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
         from
         <include refid="tableName"/>
         where C_ID = #{pageId}
     </select>
+
+    <select id="getPagesBetween" parameterType="java.util.Date" resultMap="page">
+        select C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
+        from
+        <include refid="tableName"/>
+        where C_DIARY_ID = #{diaryId} AND D_CREATE_TIME BETWEEN #{beginTime} AND #{endTime}
+    </select>
+
 </mapper>

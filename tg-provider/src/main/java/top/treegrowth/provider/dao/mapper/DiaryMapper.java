@@ -1,6 +1,7 @@
 package top.treegrowth.provider.dao.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import top.treegrowth.model.entity.Diary;
 
 /**
@@ -11,4 +12,6 @@ import top.treegrowth.model.entity.Diary;
 public interface DiaryMapper {
 
     void createDiary(Diary diary);
+
+    Diary getDiaryBy(@Param("diaryId") String diaryId);
 }

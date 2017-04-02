@@ -31,7 +31,7 @@ public class DiaryServiceImpl implements IDiaryService {
         DiaryDetail diaryDetail = new DiaryDetail();
         diaryDetail.setId(diary.getId());
         diaryDetail.setName(diary.getName());
-        diaryDetail.setCreateUserId(diary.getCreateUserId());
+        diaryDetail.setCreateUserId(diary.getAuthorId());
         diaryDetail.setCreateTime(diary.getCreateTime());
         diaryDetail.setDescription(diary.getDescription());
         return fillInWithUserState(diaryDetail, userId);
@@ -44,7 +44,7 @@ public class DiaryServiceImpl implements IDiaryService {
         diary.setId(uuid());
         diary.setCreateTime(new Date());
         diaryMapper.createDiary(diary);
-        return getDetail(diary, diaryPure.getCreateUserId());
+        return getDetail(diary, diaryPure.getAuthorId());
     }
 
     private DiaryDetail fillInWithUserState(DiaryDetail diaryDetail, String userId) {

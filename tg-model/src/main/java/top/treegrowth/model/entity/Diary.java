@@ -9,7 +9,7 @@ import java.util.Date;
 public class Diary {
 
     private String id;
-    private String createUserId;
+    private String authorId;
     private String name;
     private Date createTime;
     private String description;
@@ -22,12 +22,12 @@ public class Diary {
         this.id = id;
     }
 
-    public String getCreateUserId() {
-        return createUserId;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public String getName() {

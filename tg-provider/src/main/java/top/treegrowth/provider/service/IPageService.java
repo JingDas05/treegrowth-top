@@ -2,6 +2,10 @@ package top.treegrowth.provider.service;
 
 import top.treegrowth.provider.serviceImpl.bo.PageDetail;
 import top.treegrowth.provider.serviceImpl.bo.PagePure;
+import top.treegrowth.provider.serviceImpl.bo.PagesReq;
+import top.treegrowth.provider.serviceImpl.bo.PagesResponse;
+
+import java.util.List;
 
 /**
  * @author wusi
@@ -10,4 +14,6 @@ import top.treegrowth.provider.serviceImpl.bo.PagePure;
 public interface IPageService {
 
     PageDetail createPage(PagePure pagePure);
+
+    PagesResponse<List<PageDetail>> getPagesBetween(PagesReq pagesReq);
 }

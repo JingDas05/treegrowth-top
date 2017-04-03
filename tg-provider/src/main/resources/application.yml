@@ -58,4 +58,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:1111/eureka/
-
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    preferIpAddress: true

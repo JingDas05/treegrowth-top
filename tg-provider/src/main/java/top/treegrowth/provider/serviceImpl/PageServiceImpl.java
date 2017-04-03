@@ -14,7 +14,8 @@ import top.treegrowth.provider.service.IPageService;
 import top.treegrowth.provider.serviceImpl.bo.PageDetail;
 import top.treegrowth.provider.serviceImpl.bo.PagePure;
 import top.treegrowth.provider.serviceImpl.bo.PagesReq;
-import top.treegrowth.provider.serviceImpl.bo.PagesResponse;
+import top.treegrowth.provider.serviceImpl.bo.response.ItemRes;
+import top.treegrowth.provider.serviceImpl.bo.response.PageRes;
 import top.treegrowth.provider.serviceImpl.exception.NotFoundException;
 
 import java.util.Date;
@@ -66,16 +67,22 @@ public class PageServiceImpl implements IPageService {
     }
 
     @Override
-    public PagesResponse<List<PageDetail>> getPagesBetween(PagesReq pagesReq) {
+    public PageRes<PageDetail> getPagesBetween(PagesReq pagesReq) {
         PageHelper.startPage(pagesReq.getPageNum(), pagesReq.getPageSize());
-        List<Page> pages = pageMapper.getPagesBetween(pagesReq.getBeginTime(), pagesReq.getEndTime(), pagesReq.getDiaryId());
+        List<Page> pages = pageMapper.getPagesBetween(pagesReq.getStartTime(), pagesReq.getEndTime(), pagesReq.getDiaryId());
         checkState(pages != null, () -> new NotFoundException("没有查询到该日记下的列表"));
         PageInfo<Page> pageInfo = new PageInfo<>(pages);
         List<Page> pageList = pageInfo.getList();
         List<PageDetail> pageDetails = pageList.stream()
                 .map(page -> getPageDetail(page, pagesReq.getUserId()))
                 .collect(Collectors.toList());
-        return new PagesResponse<>(pageDetails, pageInfo.getSize(), pageInfo.isIsLastPage());
+        return new PageRes<>(pageDetails, pageInfo.getSize(), pageInfo.isIsLastPage());
+    }
+
+    @Override
+    public ItemRes<Boolean> deleteBy(String pageId) {
+        pageMapper.deleteBy(pageId);
+        return new ItemRes<>(true);
     }
 
     private void fillInWithUserState(PageDetail pageDetail, String userId) {

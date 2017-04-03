@@ -37,9 +37,9 @@
     </insert>
 
     <delete id="deleteBy">
-        delete from
+        DELETE FROM
         <include refid="tableName"/>
-        where C_ID = #{id}
+        WHERE C_ID = #{pageId}
     </delete>
 
     <update id="updateBy" parameterType="top.treegrowth.model.entity.Dream">
@@ -62,11 +62,12 @@
         where C_ID = #{pageId}
     </select>
 
-    <select id="getPagesBetween" parameterType="java.util.Date" resultMap="page">
-        select C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
-        from
+    <select id="getPagesBetween" resultMap="page">
+        SELECT C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
+        FROM
         <include refid="tableName"/>
-        where C_DIARY_ID = #{diaryId} AND D_CREATE_TIME BETWEEN #{beginTime} AND #{endTime}
+        WHERE C_DIARY_ID = #{diaryId} AND D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+        ORDER BY D_CREATE_TIME DESC
     </select>
 
 </mapper>

@@ -1,6 +1,5 @@
 package top.treegrowth;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableTransactionManagement
-//@MapperScan(basePackages = {"top.treegrowth.provider.dao.top.treegrowth.mapper"})
 public class ProviderApplication {
 
 

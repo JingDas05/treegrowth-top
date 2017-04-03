@@ -3,7 +3,8 @@ package top.treegrowth.provider.service;
 import top.treegrowth.provider.serviceImpl.bo.PageDetail;
 import top.treegrowth.provider.serviceImpl.bo.PagePure;
 import top.treegrowth.provider.serviceImpl.bo.PagesReq;
-import top.treegrowth.provider.serviceImpl.bo.PagesResponse;
+import top.treegrowth.provider.serviceImpl.bo.response.ItemRes;
+import top.treegrowth.provider.serviceImpl.bo.response.PageRes;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface IPageService {
 
     PageDetail createPage(PagePure pagePure);
 
-    PagesResponse<List<PageDetail>> getPagesBetween(PagesReq pagesReq);
+    PageRes<PageDetail> getPagesBetween(PagesReq pagesReq);
+
+    ItemRes<Boolean> deleteBy(String pageId);
 }

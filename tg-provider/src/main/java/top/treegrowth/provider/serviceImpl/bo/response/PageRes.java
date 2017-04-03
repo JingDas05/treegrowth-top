@@ -1,32 +1,33 @@
-package top.treegrowth.provider.serviceImpl.bo;
+package top.treegrowth.provider.serviceImpl.bo.response;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author wusi
  * @version 2017/4/2 22:56.
  */
-public class PagesResponse<T> implements Serializable {
+public class PageRes<T> implements Serializable {
     private static final long serialVersionUID = 4008274847648869238L;
 
-    private T data;
+    private List<T> data;
     private int total;
     private boolean isLast;
 
-    public PagesResponse() {
+    public PageRes() {
     }
 
-    public PagesResponse(T data, int total, boolean isLast) {
+    public PageRes(List<T> data, int total, boolean isLast) {
         this.data = data;
         this.total = total;
         this.isLast = isLast;
     }
 
-    public T getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 

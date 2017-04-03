@@ -14,7 +14,7 @@ public class PagesReq implements Serializable {
     private int pageNum;
     private int pageSize;
     private String diaryId;
-    private Date beginTime;
+    private Date startTime;
     private Date endTime;
 
     public String getUserId() {
@@ -49,12 +49,12 @@ public class PagesReq implements Serializable {
         this.diaryId = diaryId;
     }
 
-    public Date getBeginTime() {
-        return beginTime;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public Date getEndTime() {

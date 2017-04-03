@@ -22,6 +22,8 @@
         <module>tg-common</module>
         <module>tg-redis</module>
         <module>tg-model</module>
+        <module>tg-config-server</module>
+        <module>tg-message-queue</module>
     </modules>
 
     <name>tg-parent</name>
@@ -62,6 +64,11 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.treegrowth</groupId>
+                <artifactId>tg-message-queue</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

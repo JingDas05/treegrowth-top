@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: tg-provider
   datasource:
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://localhost:5432/tg
@@ -62,3 +60,8 @@ eureka:
     fetch-registry: true
   instance:
     preferIpAddress: true
+
+kafka:
+  broker:
+    address: localhost:9092
+  topic: page

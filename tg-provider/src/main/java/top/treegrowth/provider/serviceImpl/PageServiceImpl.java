@@ -3,9 +3,12 @@ package top.treegrowth.provider.serviceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import top.treegrowth.message.core.Sender;
 import top.treegrowth.model.entity.Diary;
 import top.treegrowth.model.entity.Page;
 import top.treegrowth.provider.dao.mapper.DiaryMapper;
@@ -36,6 +39,8 @@ public class PageServiceImpl implements IPageService {
     private PageMapper pageMapper;
     @Autowired
     private DiaryMapper diaryMapper;
+    @Autowired
+    private Sender sender;
 
     public PageDetail getPageDetail(Page page, String userId) {
         PageDetail pageDetail = new PageDetail();
@@ -63,6 +68,11 @@ public class PageServiceImpl implements IPageService {
         page.setId(uuid());
         page.setCreateTime(new Date());
         pageMapper.createPage(page);
+
+        sender.send(MessageBuilder.withPayload(page)
+                .setHeader(KafkaHeaders.TOPIC,"treegrowth.page")
+                .build());
+
         return getPageDetail(page, pagePure.getAuthorId());
     }
 

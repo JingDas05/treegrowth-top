@@ -1,0 +1,17 @@
+server:
+  port: 1121
+
+#http://localhost:1121/provider/dev 访问本地配置
+
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+        native:
+          search-locations: classpath:/

@@ -55,7 +55,7 @@
         where C_ID = #{id}
     </update>
 
-    <select id="getPagesBy" parameterType="java.lang.String" resultMap="page">
+    <select id="getPageBy" parameterType="java.lang.String" resultMap="page">
         select C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
         from
         <include refid="tableName"/>
@@ -63,11 +63,30 @@
     </select>
 
     <select id="getPagesBetween" resultMap="page">
-        SELECT C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
+        SELECT page.C_ID,
+        page.C_DIARY_ID,
+        page.C_NAME,
+        page.D_CREATE_TIME,
+        page.C_MIND,
+        page.C_CONTENT,
+        page.C_WEATHER
         FROM
-        <include refid="tableName"/>
-        WHERE C_DIARY_ID = #{diaryId} AND D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+        db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
+        WHERE page.C_DIARY_ID = #{diaryId} AND diary.C_AUTHOR_ID = #{userId} AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
         ORDER BY D_CREATE_TIME DESC
     </select>
 
+    <select id="getPagesBy" parameterType="java.lang.String" resultMap="page">
+        SELECT page.C_ID,
+        page.C_DIARY_ID,
+        page.C_NAME,
+        page.D_CREATE_TIME,
+        page.C_MIND,
+        page.C_CONTENT,
+        page.C_WEATHER
+        FROM
+        db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
+        WHERE page.C_DIARY_ID = #{diaryId} AND diary.C_AUTHOR_ID = #{userId}
+        ORDER BY D_CREATE_TIME DESC
+    </select>
 </mapper>

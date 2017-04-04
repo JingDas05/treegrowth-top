@@ -6,6 +6,8 @@ import org.elasticsearch.action.search.SearchResponse;
 import top.treegrowth.model.elastic.IndexInfo;
 import top.treegrowth.model.elastic.QueryReq;
 import top.treegrowth.model.entity.Page;
+import top.treegrowth.model.response.PageDetail;
+import top.treegrowth.model.response.PageRes;
 
 import java.util.List;
 
@@ -19,5 +21,5 @@ public interface IElasticService<T> {
 
     BulkResponse bulkIndex(List<Page> pages, IndexInfo indexInfo);
 
-    SearchResponse search(QueryReq queryReq);
+    PageRes<PageDetail> search(QueryReq queryReq);
 }

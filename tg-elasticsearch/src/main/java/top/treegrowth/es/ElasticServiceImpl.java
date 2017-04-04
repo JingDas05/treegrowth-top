@@ -18,6 +18,8 @@ import top.treegrowth.es.service.IElasticService;
 import top.treegrowth.model.elastic.IndexInfo;
 import top.treegrowth.model.elastic.QueryReq;
 import top.treegrowth.model.entity.Page;
+import top.treegrowth.model.response.PageDetail;
+import top.treegrowth.model.response.PageRes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,8 +59,9 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
     }
 
     @Override
-    public SearchResponse search(QueryReq queryReq) {
+    public PageRes<PageDetail> search(QueryReq queryReq) {
         SearchResponse searchResponse;
+        PageRes<PageDetail> pageRes = new PageRes<>();
         HighlightBuilder highlightBuilder = new HighlightBuilder();
         highlightBuilder.field(NAME);
         highlightBuilder.field(CONTENT);
@@ -74,6 +77,6 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
         long total = searchHits.getTotalHits();
         List<SearchHit> hits = Arrays.asList(searchHits.getHits());
 
-        return searchResponse;
+        return pageRes;
     }
 }

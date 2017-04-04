@@ -17,11 +17,14 @@ public interface PageMapper {
 
     void createPage(Page page);
 
-    Page getPageBy(@Param("pageId") String pageId);
+    Page getPageBy(@Param("pageId") String pageId, @Param("userId") String userId);
 
     List<Page> getPagesBetween(@Param("startTime") Date startTime,
                                @Param("endTime") Date endTime,
-                               @Param("diaryId") String diaryId);
+                               @Param("diaryId") String diaryId,
+                               @Param("userId") String userId);
+
+    List<Page> getPagesBy(@Param("diaryId") String diaryId, @Param("userId") String userId);
 
     void deleteBy(@Param("pageId") String pageId);
 }

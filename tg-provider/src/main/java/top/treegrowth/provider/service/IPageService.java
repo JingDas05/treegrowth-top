@@ -12,5 +12,7 @@ public interface IPageService {
 
     PageRes<PageDetail> getPagesBetween(PagesReq pagesReq);
 
+    PageRes<PageDetail> getPagesBy(PagesReq pagesReq);
+
     ItemRes<Boolean> deleteBy(String pageId);
 }

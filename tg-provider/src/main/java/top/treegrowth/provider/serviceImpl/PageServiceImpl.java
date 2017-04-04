@@ -75,7 +75,20 @@ public class PageServiceImpl implements IPageService {
     @Override
     public PageRes<PageDetail> getPagesBetween(PagesReq pagesReq) {
         PageHelper.startPage(pagesReq.getPageNum(), pagesReq.getPageSize());
-        List<Page> pages = pageMapper.getPagesBetween(pagesReq.getStartTime(), pagesReq.getEndTime(), pagesReq.getDiaryId());
+        List<Page> pages = pageMapper.getPagesBetween(pagesReq.getStartTime(), pagesReq.getEndTime(), pagesReq.getDiaryId(),pagesReq.getUserId());
+        checkState(pages != null, () -> new NotFoundException("没有查询到该日记下的列表"));
+        PageInfo<Page> pageInfo = new PageInfo<>(pages);
+        List<Page> pageList = pageInfo.getList();
+        List<PageDetail> pageDetails = pageList.stream()
+                .map(page -> getPageDetail(page, pagesReq.getUserId()))
+                .collect(Collectors.toList());
+        return new PageRes<>(pageDetails, pageInfo.getSize(), pageInfo.isIsLastPage());
+    }
+
+    @Override
+    public PageRes<PageDetail> getPagesBy(PagesReq pagesReq) {
+        PageHelper.startPage(pagesReq.getPageNum(), pagesReq.getPageSize());
+        List<Page> pages = pageMapper.getPagesBy(pagesReq.getDiaryId(), pagesReq.getUserId());
         checkState(pages != null, () -> new NotFoundException("没有查询到该日记下的列表"));
         PageInfo<Page> pageInfo = new PageInfo<>(pages);
         List<Page> pageList = pageInfo.getList();

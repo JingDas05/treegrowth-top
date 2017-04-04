@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.es.service.IElasticService;
 import top.treegrowth.model.elastic.QueryReq;
 import top.treegrowth.model.entity.Page;
+import top.treegrowth.model.response.PageDetail;
+import top.treegrowth.model.response.PageRes;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -23,7 +25,7 @@ public class SearchApi {
     private IElasticService<Page> elasticService;
 
     @RequestMapping(method = POST)
-    SearchResponse search(@RequestBody QueryReq queryReq) {
+    PageRes<PageDetail> search(@RequestBody QueryReq queryReq) {
         return elasticService.search(queryReq);
     }
 }

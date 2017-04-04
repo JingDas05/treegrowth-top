@@ -1,15 +1,15 @@
-package top.treegrowth.provider.serviceImpl.bo;
+package top.treegrowth.model.elastic;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author wusi
- * @version 2017/3/31 7:03.
+ * @version 2017/4/4 12:08.
  */
-public class PageDetail implements Serializable{
+public class QueryResponse implements Serializable {
 
-    private static final long serialVersionUID = 4078488500752732981L;
+    private static final long serialVersionUID = 8535614889461777072L;
     private String id;
     private String diaryId;
     private String name;
@@ -26,12 +26,12 @@ public class PageDetail implements Serializable{
         this.id = id;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getDiaryId() {
         return diaryId;
+    }
+
+    public void setDiaryId(String diaryId) {
+        this.diaryId = diaryId;
     }
 
     public String getName() {
@@ -62,8 +62,8 @@ public class PageDetail implements Serializable{
         return content;
     }
 
-    public void setDiaryId(String diaryId) {
-        this.diaryId = diaryId;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getWeather() {

@@ -1,4 +1,4 @@
-package top.treegrowth.provider.serviceImpl.bo.response;
+package top.treegrowth.model.response;
 
 import java.io.Serializable;
 import java.util.List;

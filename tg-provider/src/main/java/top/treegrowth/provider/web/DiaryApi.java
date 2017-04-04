@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.treegrowth.model.response.DiaryDetail;
+import top.treegrowth.model.response.DiaryPure;
 import top.treegrowth.provider.service.IDiaryService;
-import top.treegrowth.provider.serviceImpl.bo.DiaryDetail;
-import top.treegrowth.provider.serviceImpl.bo.DiaryPure;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 

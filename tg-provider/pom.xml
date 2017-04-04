@@ -24,6 +24,11 @@
             <artifactId>tg-message-queue</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>tg-elasticsearch</artifactId>
+        </dependency>
+
         <!--spring-cloud-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

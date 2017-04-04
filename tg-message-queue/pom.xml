@@ -25,6 +25,10 @@
             <groupId>top.treegrowth</groupId>
             <artifactId>tg-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>tg-elasticsearch</artifactId>
+        </dependency>
 
     <!--spring kafka-->
 

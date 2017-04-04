@@ -1,4 +1,4 @@
-package top.treegrowth.provider.serviceImpl.bo;
+package top.treegrowth.model.response;
 
 import top.treegrowth.model.entity.Page;
 

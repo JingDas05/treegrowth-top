@@ -1,12 +1,6 @@
 package top.treegrowth.provider.service;
 
-import top.treegrowth.provider.serviceImpl.bo.PageDetail;
-import top.treegrowth.provider.serviceImpl.bo.PagePure;
-import top.treegrowth.provider.serviceImpl.bo.PagesReq;
-import top.treegrowth.provider.serviceImpl.bo.response.ItemRes;
-import top.treegrowth.provider.serviceImpl.bo.response.PageRes;
-
-import java.util.List;
+import top.treegrowth.model.response.*;
 
 /**
  * @author wusi

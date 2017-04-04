@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.treegrowth.model.entity.Diary;
+import top.treegrowth.model.response.DiaryDetail;
+import top.treegrowth.model.response.DiaryPure;
 import top.treegrowth.provider.dao.mapper.DiaryMapper;
 import top.treegrowth.provider.service.IDiaryService;
-import top.treegrowth.provider.serviceImpl.bo.DiaryDetail;
-import top.treegrowth.provider.serviceImpl.bo.DiaryPure;
 
 import java.util.Date;
 

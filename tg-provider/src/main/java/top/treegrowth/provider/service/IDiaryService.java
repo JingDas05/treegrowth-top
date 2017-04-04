@@ -1,7 +1,7 @@
 package top.treegrowth.provider.service;
 
-import top.treegrowth.provider.serviceImpl.bo.DiaryDetail;
-import top.treegrowth.provider.serviceImpl.bo.DiaryPure;
+import top.treegrowth.model.response.DiaryDetail;
+import top.treegrowth.model.response.DiaryPure;
 
 /**
  * @author wusi

@@ -11,14 +11,10 @@ import org.springframework.util.StringUtils;
 import top.treegrowth.message.core.Sender;
 import top.treegrowth.model.entity.Diary;
 import top.treegrowth.model.entity.Page;
+import top.treegrowth.model.response.*;
 import top.treegrowth.provider.dao.mapper.DiaryMapper;
 import top.treegrowth.provider.dao.mapper.PageMapper;
 import top.treegrowth.provider.service.IPageService;
-import top.treegrowth.provider.serviceImpl.bo.PageDetail;
-import top.treegrowth.provider.serviceImpl.bo.PagePure;
-import top.treegrowth.provider.serviceImpl.bo.PagesReq;
-import top.treegrowth.provider.serviceImpl.bo.response.ItemRes;
-import top.treegrowth.provider.serviceImpl.bo.response.PageRes;
 import top.treegrowth.provider.serviceImpl.exception.NotFoundException;
 
 import java.util.Date;

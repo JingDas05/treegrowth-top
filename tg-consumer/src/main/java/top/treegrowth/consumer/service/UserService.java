@@ -9,11 +9,16 @@ import top.treegrowth.model.user.ReturnUser;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@FeignClient("tg-provider")
+/**
+ * @author wusi
+ * @version 2017/4/4 23:27.
+ */
+
+@FeignClient("provider")
 @RequestMapping("api/service/users")
 public interface UserService {
 
-    @RequestMapping(value = "api/users/identify-code", method = POST)
+    @RequestMapping(value = "/identify-code", method = POST)
     void getIdentifyCode(@RequestParam("phone") String phone);
 
     @RequestMapping(method = POST)

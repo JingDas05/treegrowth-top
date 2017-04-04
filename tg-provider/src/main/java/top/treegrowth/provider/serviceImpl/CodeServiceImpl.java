@@ -55,6 +55,6 @@ public class CodeServiceImpl implements ICodeService {
         } catch (ApiException e) {
             throw new AaliApiException("发送验证码失败", e);
         }
-        System.out.println(rsp.getBody());
+        System.err.println(rsp.getBody());
     }
 }

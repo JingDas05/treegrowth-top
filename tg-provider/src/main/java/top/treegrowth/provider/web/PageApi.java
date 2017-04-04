@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.model.response.*;
 import top.treegrowth.provider.service.IPageService;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -36,8 +37,13 @@ public class PageApi {
         return pageService.getPagesBy(pagesReq);
     }
 
-    @RequestMapping(value = "/delete/{pageId}", method = POST)
-    public ItemRes<Boolean> deletePages(@PathVariable String pageId) {
-        return pageService.deleteBy(pageId);
+    @RequestMapping(value = "/delete/{userId}/{pageId}", method = POST)
+    public ItemRes<Boolean> deletePages(@PathVariable String userId, @PathVariable String pageId) {
+        return pageService.deleteBy(userId, pageId);
+    }
+
+    @RequestMapping(value = "/{userId}/{pageId}", method = GET)
+    public ItemRes<PageDetail> getPageDetailBy(@PathVariable("userId") String userId, @PathVariable("pageId") String pageId) {
+        return pageService.getPageDetailBy(userId, pageId);
     }
 }

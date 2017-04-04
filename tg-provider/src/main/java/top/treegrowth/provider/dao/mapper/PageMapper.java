@@ -17,7 +17,7 @@ public interface PageMapper {
 
     void createPage(Page page);
 
-    Page getPageBy(@Param("pageId") String pageId, @Param("userId") String userId);
+    Page getPageBy(@Param("userId") String userId, @Param("pageId") String pageId);
 
     List<Page> getPagesBetween(@Param("startTime") Date startTime,
                                @Param("endTime") Date endTime,
@@ -26,5 +26,5 @@ public interface PageMapper {
 
     List<Page> getPagesBy(@Param("diaryId") String diaryId, @Param("userId") String userId);
 
-    void deleteBy(@Param("pageId") String pageId);
+    void deleteBy(@Param("userId") String userId, @Param("pageId") String pageId);
 }

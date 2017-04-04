@@ -11,7 +11,7 @@ public class PageRes<T> implements Serializable {
     private static final long serialVersionUID = 4008274847648869238L;
 
     private List<T> data;
-    private int total;
+    private long total;
     private boolean isLast;
 
     public PageRes() {
@@ -31,11 +31,11 @@ public class PageRes<T> implements Serializable {
         this.data = data;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 

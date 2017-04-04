@@ -36,10 +36,10 @@
         #{weather, jdbcType=VARCHAR})
     </insert>
 
-    <delete id="deleteBy">
+    <delete id="deleteBy" parameterType="java.lang.String">
         DELETE FROM
-        <include refid="tableName"/>
-        WHERE C_ID = #{pageId}
+        db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
+        WHERE page.C_ID = #{pageId} AND diary.C_AUTHOR_ID = #{userId}
     </delete>
 
     <update id="updateBy" parameterType="top.treegrowth.model.entity.Dream">
@@ -56,10 +56,16 @@
     </update>
 
     <select id="getPageBy" parameterType="java.lang.String" resultMap="page">
-        select C_ID, C_DIARY_ID, C_NAME, D_CREATE_TIME, C_MIND, C_CONTENT, C_WEATHER
-        from
-        <include refid="tableName"/>
-        where C_ID = #{pageId}
+        page.C_ID,
+        page.C_DIARY_ID,
+        page.C_NAME,
+        page.D_CREATE_TIME,
+        page.C_MIND,
+        page.C_CONTENT,
+        page.C_WEATHER
+        FROM
+        db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
+        WHERE page.C_ID = #{pageId} AND diary.C_AUTHOR_ID = #{userId}
     </select>
 
     <select id="getPagesBetween" resultMap="page">
@@ -77,7 +83,8 @@
     </select>
 
     <select id="getPagesBy" parameterType="java.lang.String" resultMap="page">
-        SELECT page.C_ID,
+        SELECT
+        page.C_ID,
         page.C_DIARY_ID,
         page.C_NAME,
         page.D_CREATE_TIME,

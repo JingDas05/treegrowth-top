@@ -14,5 +14,7 @@ public interface IPageService {
 
     PageRes<PageDetail> getPagesBy(PagesReq pagesReq);
 
-    ItemRes<Boolean> deleteBy(String pageId);
+    ItemRes<Boolean> deleteBy(String userId, String pageId);
+
+    ItemRes<PageDetail> getPageDetailBy(String userId, String pageId);
 }

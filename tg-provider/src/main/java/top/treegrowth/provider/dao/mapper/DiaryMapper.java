@@ -13,5 +13,5 @@ public interface DiaryMapper {
 
     void createDiary(Diary diary);
 
-    Diary getDiaryBy(@Param("diaryId") String diaryId);
+    Diary getDiaryBy(@Param("diaryId") String diaryId, @Param("userId") String userId);
 }

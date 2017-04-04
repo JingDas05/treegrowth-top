@@ -12,6 +12,9 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.treegrowth.es.service.IElasticService;
@@ -23,6 +26,8 @@ import top.treegrowth.model.response.PageRes;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 
@@ -37,8 +42,9 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
     private TransportClient client;
     private static final String NAME = "name";
     private static final String CONTENT = "content";
-    private static final String INDEX = "diary";
-    private static final String TYPE = "page";
+    public static final String INDEX = "diary";
+    public static final String TYPE = "page";
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     public IndexResponse index(T data, IndexInfo indexInfo) {
@@ -74,9 +80,29 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
                 .highlighter(highlightBuilder)
                 .get();
         SearchHits searchHits = searchResponse.getHits();
-        long total = searchHits.getTotalHits();
+        pageRes.setTotal(searchHits.getTotalHits());
         List<SearchHit> hits = Arrays.asList(searchHits.getHits());
-
+        List<PageDetail> pageDetails = hits.stream()
+                .map(searchHit -> {
+                    HighlightField nameHighlightField = searchHit.getHighlightFields().get("name");
+                    HighlightField contentHighlightField = searchHit.getHighlightFields().get("content");
+                    Map<String, Object> source = searchHit.getSource();
+                    PageDetail pageDetail = new PageDetail();
+                    pageDetail.setId(searchHit.getId());
+                    pageDetail.setName(nameHighlightField == null ?
+                            String.valueOf(source.get("name"))
+                            : nameHighlightField.getFragments()[0].toString());
+                    pageDetail.setCreateTime(dateTimeFormatter.parseDateTime(String.valueOf(source.get("createTime"))).toDate());
+                    pageDetail.setContent(contentHighlightField == null ?
+                            String.valueOf(source.get("content"))
+                            : contentHighlightField.getFragments()[0].toString());
+                    pageDetail.setMind(String.valueOf(source.get("mind")));
+                    pageDetail.setWeather(String.valueOf(source.get("weather")));
+                    return pageDetail;
+                })
+                .collect(Collectors.toList());
+        pageRes.setData(pageDetails);
+        pageRes.setLast(queryReq.getFrom() + queryReq.getSize() >= searchHits.getTotalHits());
         return pageRes;
     }
 }

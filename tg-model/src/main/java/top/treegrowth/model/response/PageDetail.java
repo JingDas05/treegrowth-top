@@ -7,11 +7,12 @@ import java.util.Date;
  * @author wusi
  * @version 2017/3/31 7:03.
  */
-public class PageDetail implements Serializable{
+public class PageDetail implements Serializable {
 
     private static final long serialVersionUID = 4078488500752732981L;
     private String id;
     private String diaryId;
+    private String diaryName;
     private String name;
     private Date createTime;
     private String mind;
@@ -32,6 +33,18 @@ public class PageDetail implements Serializable{
 
     public String getDiaryId() {
         return diaryId;
+    }
+
+    public void setDiaryId(String diaryId) {
+        this.diaryId = diaryId;
+    }
+
+    public String getDiaryName() {
+        return diaryName;
+    }
+
+    public void setDiaryName(String diaryName) {
+        this.diaryName = diaryName;
     }
 
     public String getName() {
@@ -60,10 +73,6 @@ public class PageDetail implements Serializable{
 
     public String getContent() {
         return content;
-    }
-
-    public void setDiaryId(String diaryId) {
-        this.diaryId = diaryId;
     }
 
     public String getWeather() {

@@ -53,6 +53,6 @@
         select C_ID, C_AUTHOR_ID, C_NAME, D_CREATE_TIME, C_DESCRIPTION
         from
         <include refid="tableName"/>
-        where C_ID = #{diaryId}
+        where C_ID = #{diaryId} AND C_AUTHOR_ID = #{userId}
     </select>
 </mapper>

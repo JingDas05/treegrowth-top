@@ -3,5 +3,5 @@ spring:
     name: provider
   cloud:
     config:
-      uri: http://localhost:1121/
+      uri: http://localhost:8888/
       profile: dev

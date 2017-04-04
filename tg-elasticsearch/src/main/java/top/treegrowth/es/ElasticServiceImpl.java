@@ -1,12 +1,15 @@
 package top.treegrowth.es;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -44,12 +47,13 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
     private static final String CONTENT = "content";
     public static final String INDEX = "diary";
     public static final String TYPE = "page";
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+    private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(DATE_FORMAT);
 
     @Override
     public IndexResponse index(T data, IndexInfo indexInfo) {
         return client.prepareIndex(indexInfo.getIndex(), indexInfo.getType(), indexInfo.getId())
-                .setSource(JSON.toJSONString(data))
+                .setSource(JSON.toJSONStringWithDateFormat(data, DATE_FORMAT), XContentType.JSON)
                 .get();
     }
 
@@ -59,7 +63,7 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
         String index = indexInfo.getIndex();
         String type = indexInfo.getType();
         pages.forEach(data -> bulkRequest.add(client.prepareIndex(index, type, data.getId())
-                .setSource(JSON.toJSONString(data))
+                .setSource(JSON.toJSONStringWithDateFormat(data, DATE_FORMAT), XContentType.JSON)
         ));
         return bulkRequest.get();
     }
@@ -98,6 +102,7 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
                             : contentHighlightField.getFragments()[0].toString());
                     pageDetail.setMind(String.valueOf(source.get("mind")));
                     pageDetail.setWeather(String.valueOf(source.get("weather")));
+                    pageDetail.setDiaryId(String.valueOf(source.get("diaryId")));
                     return pageDetail;
                 })
                 .collect(Collectors.toList());

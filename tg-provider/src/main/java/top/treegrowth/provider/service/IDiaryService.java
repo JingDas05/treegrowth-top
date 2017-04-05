@@ -1,7 +1,9 @@
 package top.treegrowth.provider.service;
 
-import top.treegrowth.model.response.DiaryDetail;
-import top.treegrowth.model.response.DiaryPure;
+import top.treegrowth.model.res.DiaryDetail;
+import top.treegrowth.model.req.DiaryPure;
+import top.treegrowth.model.req.DiaryReq;
+import top.treegrowth.model.res.PageRes;
 
 /**
  * @author wusi
@@ -10,4 +12,6 @@ import top.treegrowth.model.response.DiaryPure;
 public interface IDiaryService {
 
     DiaryDetail createDiary(DiaryPure diaryPure);
+
+    PageRes<DiaryDetail> getDiaries(DiaryReq diaryReq);
 }

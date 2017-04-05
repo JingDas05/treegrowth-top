@@ -1,7 +1,7 @@
 package top.treegrowth.provider.service;
 
-import top.treegrowth.model.user.PureUser;
-import top.treegrowth.model.user.ReturnUser;
+import top.treegrowth.model.res.PureUser;
+import top.treegrowth.model.res.ReturnUser;
 import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 
 /**

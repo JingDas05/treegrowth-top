@@ -1,4 +1,4 @@
-package top.treegrowth.model.user;
+package top.treegrowth.model.res;
 
 import top.treegrowth.model.entity.User;
 

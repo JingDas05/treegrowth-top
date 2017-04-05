@@ -1,4 +1,4 @@
-package top.treegrowth.model.user;
+package top.treegrowth.model.res;
 
 public class PureUser {
 

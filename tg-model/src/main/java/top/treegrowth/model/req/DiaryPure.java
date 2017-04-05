@@ -1,4 +1,4 @@
-package top.treegrowth.model.response;
+package top.treegrowth.model.req;
 
 import top.treegrowth.model.entity.Diary;
 

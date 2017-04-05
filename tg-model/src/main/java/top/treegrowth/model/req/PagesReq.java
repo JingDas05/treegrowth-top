@@ -1,4 +1,4 @@
-package top.treegrowth.model.response;
+package top.treegrowth.model.req;
 
 import java.io.Serializable;
 import java.util.Date;

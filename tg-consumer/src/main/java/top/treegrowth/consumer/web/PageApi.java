@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.treegrowth.model.response.*;
-import top.treegrowth.provider.service.IPageService;
+import top.treegrowth.consumer.service.PageService;
+import top.treegrowth.model.req.PagePure;
+import top.treegrowth.model.req.PagesReq;
+import top.treegrowth.model.res.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -20,7 +22,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class PageApi {
 
     @Autowired
-    private IPageService pageService;
+    private PageService pageService;
 
     @RequestMapping(value = "/create", method = POST)
     public PageDetail createPage(@RequestBody PagePure pagePure) {
@@ -39,7 +41,7 @@ public class PageApi {
 
     @RequestMapping(value = "/delete/{userId}/{pageId}", method = POST)
     public ItemRes<Boolean> deletePages(@PathVariable String userId, @PathVariable String pageId) {
-        return pageService.deleteBy(userId, pageId);
+        return pageService.deletePages(userId, pageId);
     }
 
     @RequestMapping(value = "/{userId}/{pageId}", method = GET)

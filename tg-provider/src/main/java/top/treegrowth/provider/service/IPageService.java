@@ -1,6 +1,8 @@
 package top.treegrowth.provider.service;
 
-import top.treegrowth.model.response.*;
+import top.treegrowth.model.req.PagePure;
+import top.treegrowth.model.req.PagesReq;
+import top.treegrowth.model.res.*;
 
 /**
  * @author wusi

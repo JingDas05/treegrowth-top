@@ -1,4 +1,4 @@
-package top.treegrowth.model.response;
+package top.treegrowth.model.res;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,7 @@ public class PageRes<T> implements Serializable {
     public PageRes() {
     }
 
-    public PageRes(List<T> data, int total, boolean isLast) {
+    public PageRes(List<T> data, long total, boolean isLast) {
         this.data = data;
         this.total = total;
         this.isLast = isLast;

@@ -6,8 +6,8 @@ import org.springframework.util.StringUtils;
 import top.treegrowth.common.utils.Generator;
 import top.treegrowth.model.entity.User;
 import top.treegrowth.model.redis.PureIdentifyCode;
-import top.treegrowth.model.user.PureUser;
-import top.treegrowth.model.user.ReturnUser;
+import top.treegrowth.model.res.PureUser;
+import top.treegrowth.model.res.ReturnUser;
 import top.treegrowth.provider.dao.mapper.UserMapper;
 import top.treegrowth.provider.service.ICodeService;
 import top.treegrowth.provider.service.IUserService;
@@ -15,7 +15,6 @@ import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 import top.treegrowth.redis.dao.RedisDao;
 
 import java.security.InvalidParameterException;
-import java.util.Objects;
 
 /**
  * @author wusi
@@ -40,7 +39,7 @@ public class UserServiceImpl implements IUserService {
         user.setId(Generator.uuid());
         user.setPassword(pureUser.getPassword());
         user.setPhone(pureUser.getPhone());
-        userMapper.insertUser(user);
+        userMapper.createUser(user);
         return new ReturnUser(user);
     }
 

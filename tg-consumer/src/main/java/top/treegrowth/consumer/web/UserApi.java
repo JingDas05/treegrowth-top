@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.consumer.service.UserService;
-import top.treegrowth.model.user.PureUser;
-import top.treegrowth.model.user.ReturnUser;
+import top.treegrowth.model.res.PureUser;
+import top.treegrowth.model.res.ReturnUser;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 

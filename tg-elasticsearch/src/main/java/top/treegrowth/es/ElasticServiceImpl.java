@@ -1,8 +1,6 @@
 package top.treegrowth.es;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -10,8 +8,6 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -24,8 +20,8 @@ import top.treegrowth.es.service.IElasticService;
 import top.treegrowth.model.elastic.IndexInfo;
 import top.treegrowth.model.elastic.QueryReq;
 import top.treegrowth.model.entity.Page;
-import top.treegrowth.model.response.PageDetail;
-import top.treegrowth.model.response.PageRes;
+import top.treegrowth.model.res.PageDetail;
+import top.treegrowth.model.res.PageRes;
 
 import java.util.Arrays;
 import java.util.List;

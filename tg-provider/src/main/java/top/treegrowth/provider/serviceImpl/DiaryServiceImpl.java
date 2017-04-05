@@ -1,15 +1,21 @@
 package top.treegrowth.provider.serviceImpl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.treegrowth.model.entity.Diary;
-import top.treegrowth.model.response.DiaryDetail;
-import top.treegrowth.model.response.DiaryPure;
+import top.treegrowth.model.res.DiaryDetail;
+import top.treegrowth.model.req.DiaryPure;
+import top.treegrowth.model.req.DiaryReq;
+import top.treegrowth.model.res.PageRes;
 import top.treegrowth.provider.dao.mapper.DiaryMapper;
 import top.treegrowth.provider.service.IDiaryService;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static top.treegrowth.common.utils.Generator.uuid;
 
@@ -45,6 +51,20 @@ public class DiaryServiceImpl implements IDiaryService {
         diary.setCreateTime(new Date());
         diaryMapper.createDiary(diary);
         return getDetail(diary, diaryPure.getAuthorId());
+    }
+
+    @Override
+    public PageRes<DiaryDetail> getDiaries(DiaryReq diaryReq) {
+        int pageNum = diaryReq.getPageNum();
+        int pageSize = diaryReq.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Diary> diaries = diaryMapper.getDiaries(diaryReq.getUserId());
+        PageInfo<Diary> pageInfo = new PageInfo<>(diaries);
+        List<DiaryDetail> diaryDetails = pageInfo.getList().stream()
+                .map(diary -> getDetail(diary, diaryReq.getUserId()))
+                .collect(Collectors.toList());
+
+        return new PageRes<>(diaryDetails, pageInfo.getTotal(), (pageNum + 1) * pageSize >= pageInfo.getTotal());
     }
 
     private DiaryDetail fillInWithUserState(DiaryDetail diaryDetail, String userId) {

@@ -2,12 +2,11 @@ package top.treegrowth.es.service;
 
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchResponse;
 import top.treegrowth.model.elastic.IndexInfo;
 import top.treegrowth.model.elastic.QueryReq;
 import top.treegrowth.model.entity.Page;
-import top.treegrowth.model.response.PageDetail;
-import top.treegrowth.model.response.PageRes;
+import top.treegrowth.model.res.PageDetail;
+import top.treegrowth.model.res.PageRes;
 
 import java.util.List;
 

@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static top.treegrowth.common.utils.Constants.DATE_FORMAT;
 
 /**
  * @author wusi
@@ -43,7 +44,6 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
     private static final String CONTENT = "content";
     public static final String INDEX = "diary";
     public static final String TYPE = "page";
-    private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(DATE_FORMAT);
 
     @Override

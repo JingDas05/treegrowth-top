@@ -18,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @version 2017/4/1 7:10.
  */
 @RestController
-@RequestMapping(value = "/api/service/pages")
+@RequestMapping(value = "/api/pages")
 public class PageApi {
 
     @Autowired

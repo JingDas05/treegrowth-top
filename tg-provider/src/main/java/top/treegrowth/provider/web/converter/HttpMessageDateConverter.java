@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import static top.treegrowth.common.utils.Constants.DATE_FORMAT;
+
 /**
  * @author wusi
  * @version 2017/4/3 8:32.
@@ -25,7 +27,7 @@ public class HttpMessageDateConverter {
     @PostConstruct
     public void init() {
         httpMessageConverter = new MappingJackson2HttpMessageConverter(objectMapper);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         objectMapper.setDateFormat(dateFormat);
     }
 

@@ -3,16 +3,11 @@ package top.treegrowth.provider.web.exception;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.treegrowth.provider.serviceImpl.exception.ErrorInfo;
-import top.treegrowth.provider.serviceImpl.exception.ForbiddenException;
-import top.treegrowth.provider.serviceImpl.exception.NotFoundException;
-import top.treegrowth.provider.serviceImpl.exception.ServiceException;
+import top.treegrowth.provider.serviceImpl.exception.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static top.treegrowth.provider.serviceImpl.exception.ErrorInfo.ERROR;
-import static top.treegrowth.provider.serviceImpl.exception.ErrorInfo.FORBIDDEN;
-import static top.treegrowth.provider.serviceImpl.exception.ErrorInfo.NOT_FOUND;
+import static top.treegrowth.provider.serviceImpl.exception.ErrorInfo.*;
 
 /**
  * @author wusi
@@ -29,6 +24,8 @@ public class CustomExceptionHandler {
             errorInfo.setCode(FORBIDDEN);
         } else if (exception instanceof NotFoundException) {
             errorInfo.setCode(NOT_FOUND);
+        } else if (exception instanceof IdentifyCodeAlreadyExistException){
+            errorInfo.setCode(ALREADY_EXIST);
         } else {
             errorInfo.setCode(ERROR);
         }

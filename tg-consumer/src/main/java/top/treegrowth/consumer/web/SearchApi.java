@@ -16,7 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @version 2017/4/4 10:37.
  */
 @RestController
-@RequestMapping(value = "api/service/search")
+@RequestMapping(value = "api/search")
 public class SearchApi {
 
     @Autowired

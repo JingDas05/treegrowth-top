@@ -17,6 +17,10 @@
             <groupId>top.treegrowth</groupId>
             <artifactId>tg-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>tg-common</artifactId>
+        </dependency>
         <!--为了用@Configuration加入的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

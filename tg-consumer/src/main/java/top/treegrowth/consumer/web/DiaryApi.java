@@ -17,7 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @version 2017/3/31 6:59.
  */
 @RestController
-@RequestMapping(value = "/api/service/diaries")
+@RequestMapping(value = "/api/diaries")
 public class DiaryApi {
 
     @Autowired

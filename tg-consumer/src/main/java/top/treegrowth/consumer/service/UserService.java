@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import top.treegrowth.model.res.PureUser;
 import top.treegrowth.model.res.ReturnUser;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -18,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("api/service/users")
 public interface UserService {
 
-    @RequestMapping(value = "/identify-code", method = POST)
+    @RequestMapping(value = "/identify-code", method = GET)
     void getIdentifyCode(@RequestParam("phone") String phone);
 
     @RequestMapping(method = POST)

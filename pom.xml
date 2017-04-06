@@ -26,6 +26,7 @@
         <module>tg-config-server</module>
         <module>tg-message-queue</module>
         <module>tg-elasticsearch</module>
+        <module>tg-gateway</module>
     </modules>
 
     <name>tg-parent</name>
@@ -68,6 +69,11 @@
             <dependency>
                 <groupId>top.treegrowth</groupId>
                 <artifactId>tg-batch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.treegrowth</groupId>
+                <artifactId>tg-gateway</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

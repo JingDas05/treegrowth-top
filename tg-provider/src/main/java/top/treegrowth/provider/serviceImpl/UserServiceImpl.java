@@ -11,10 +11,13 @@ import top.treegrowth.model.res.ReturnUser;
 import top.treegrowth.provider.dao.mapper.UserMapper;
 import top.treegrowth.provider.service.ICodeService;
 import top.treegrowth.provider.service.IUserService;
+import top.treegrowth.provider.serviceImpl.exception.IdentifyCodeAlreadyExistException;
 import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 import top.treegrowth.redis.dao.RedisDao;
 
 import java.security.InvalidParameterException;
+
+import static top.treegrowth.common.utils.Conditions.checkState;
 
 /**
  * @author wusi
@@ -32,9 +35,7 @@ public class UserServiceImpl implements IUserService {
 
     public ReturnUser phoneRegister(PureUser pureUser) throws ServiceException {
         String code = redisDao.getIdentifyCode(pureUser.getPhone());
-        if (StringUtils.isEmpty(code) || !pureUser.getCode().equals(code)) {
-            throw new InvalidParameterException(code);
-        }
+        checkState(!StringUtils.isEmpty(code) && pureUser.getCode().equals(code), () -> new InvalidParameterException(code));
         User user = new User();
         user.setId(Generator.uuid());
         user.setPassword(pureUser.getPassword());
@@ -46,7 +47,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public String getIdentifyCode(String phone) {
         String oldCode = redisDao.getIdentifyCode(phone);
-        if (!StringUtils.isEmpty(oldCode)) return null;
+        checkState(StringUtils.isEmpty(oldCode), () -> new IdentifyCodeAlreadyExistException("验证码已存在，请稍后再试"));
         String newCode = Generator.getCode(999999);
         ICodeService.sendIdentifyCode(phone, newCode);
         redisDao.setIdentifyCode(new PureIdentifyCode(phone, newCode, 600L));

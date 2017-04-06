@@ -11,6 +11,7 @@ public class ErrorInfo implements Serializable {
     private static final long serialVersionUID = -1820355950059620919L;
     public static final Integer FORBIDDEN = 403;
     public static final Integer NOT_FOUND = 404;
+    public static final Integer ALREADY_EXIST = 409;
     public static final Integer ERROR = 100;
 
     private Integer code;

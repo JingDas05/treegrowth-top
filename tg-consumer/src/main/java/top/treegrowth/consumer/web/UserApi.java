@@ -9,6 +9,7 @@ import top.treegrowth.consumer.service.UserService;
 import top.treegrowth.model.res.PureUser;
 import top.treegrowth.model.res.ReturnUser;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -24,7 +25,7 @@ public class UserApi {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/identify-code", method = POST)
+    @RequestMapping(value = "/identify-code", method = GET)
     public void getIdentifyCode(@RequestParam("phone") String phone) {
         userService.getIdentifyCode(phone);
     }

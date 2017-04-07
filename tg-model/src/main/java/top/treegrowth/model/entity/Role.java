@@ -19,6 +19,14 @@ public class Role {
         this.id = id;
     }
 
+    public String getAuthorityId() {
+        return authorityId;
+    }
+
+    public void setAuthorityId(String authorityId) {
+        this.authorityId = authorityId;
+    }
+
     public String getCode() {
         return code;
     }

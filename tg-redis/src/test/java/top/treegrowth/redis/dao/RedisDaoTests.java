@@ -15,7 +15,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.treegrowth.model.redis.PureIdentifyCode;
 import top.treegrowth.redis.config.RedisConfig;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -49,13 +48,6 @@ public class RedisDaoTests {
     public void shouldRegisterRedisServer() throws Exception {
 
         Thread.sleep(3000);
-
-        PureIdentifyCode pureIdentifyCode = new PureIdentifyCode();
-        pureIdentifyCode.setPhoneNum("15640909868");
-        pureIdentifyCode.setCode("5566");
-        pureIdentifyCode.setExpiry(20L);
-
-        this.restTemplate.postForEntity("http://localhost:" + this.port + "/api/service/redis/identifyCode", pureIdentifyCode, null);
         ResponseEntity<String> response = this.restTemplate.getForEntity(
                 "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
                 String.class, "15640909868");

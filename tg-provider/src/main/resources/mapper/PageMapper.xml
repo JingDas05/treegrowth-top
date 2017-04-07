@@ -78,7 +78,12 @@
         page.C_WEATHER
         FROM
         db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
-        WHERE page.C_DIARY_ID = #{diaryId} AND diary.C_AUTHOR_ID = #{userId} AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+        WHERE
+        diary.C_AUTHOR_ID = #{userId}
+        <if test="diaryId != null and diaryId != ''">
+            AND page.C_DIARY_ID = #{diaryId}
+        </if>
+        AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
         ORDER BY D_CREATE_TIME DESC
     </select>
 
@@ -93,7 +98,11 @@
         page.C_WEATHER
         FROM
         db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
-        WHERE page.C_DIARY_ID = #{diaryId} AND diary.C_AUTHOR_ID = #{userId}
+        WHERE
+        diary.C_AUTHOR_ID = #{userId}
+        <if test="diaryId != null and diaryId != ''">
+            AND page.C_DIARY_ID = #{diaryId}
+        </if>
         ORDER BY D_CREATE_TIME DESC
     </select>
 </mapper>

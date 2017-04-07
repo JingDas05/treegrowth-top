@@ -24,7 +24,7 @@ public class UserApi {
     @Autowired
     private IUserService IUserService;
 
-    @RequestMapping(value = "/identify-code", method = GET)
+    @RequestMapping(value = "/code", method = GET)
     public String getIdentifyCode(@RequestParam("phone") String phone) throws ServiceException {
         return IUserService.getIdentifyCode(phone);
     }

@@ -15,6 +15,7 @@ import top.treegrowth.provider.serviceImpl.exception.ServiceException;
 import top.treegrowth.redis.dao.RedisDao;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static top.treegrowth.common.utils.Conditions.checkState;
 
 /**
  * @author wusi
@@ -39,9 +40,7 @@ public class CodeServiceImpl implements ICodeService {
     @Override
     public void sendIdentifyCode(String phone, String code) throws ServiceException {
         String cachedCode = redisDao.getIdentifyCode(phone);
-        if (!isNullOrEmpty(cachedCode)) {
-            throw new ForbiddenException("already apply, please wait 60s");
-        }
+        checkState(isNullOrEmpty(cachedCode), () -> new ForbiddenException("验证码已存在，请等待600s"));
         TaobaoClient client = new DefaultTaobaoClient(url, key, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
         req.setSmsType(smsType);
@@ -55,6 +54,5 @@ public class CodeServiceImpl implements ICodeService {
         } catch (ApiException e) {
             throw new AaliApiException("发送验证码失败", e);
         }
-        System.err.println(rsp.getBody());
     }
 }

@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("api/service/users")
 public interface UserService {
 
-    @RequestMapping(value = "/identify-code", method = GET)
+    @RequestMapping(value = "/code", method = GET)
     void getIdentifyCode(@RequestParam("phone") String phone);
 
     @RequestMapping(method = POST)

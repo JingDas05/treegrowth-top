@@ -13,7 +13,7 @@
     </resultMap>
 
     <sql id="tableName">
-        db_user.tg_users
+        db_user.t_user
     </sql>
 
     <insert id="createUser" parameterType="top.treegrowth.model.entity.User">
@@ -24,14 +24,16 @@
         C_NAME,
         C_PHONE,
         C_PASSWORD,
-        D_REGISTER_TIME)
+        D_REGISTER_TIME,
+        C_EMAIL)
         VALUES
         (#{id, jdbcType=CHAR},
         #{roleId, jdbcType=CHAR},
         #{name, jdbcType=VARCHAR},
         #{phone, jdbcType=VARCHAR},
         #{password, jdbcType=VARCHAR},
-        #{registerTime, jdbcType=TIMESTAMP}
+        #{registerTime, jdbcType=TIMESTAMP},
+        #{email, jdbcType=VARCHAR})
     </insert>
 
     <delete id="deleteUserBy">
@@ -60,6 +62,13 @@
         from
         <include refid="tableName"/>
         where C_ID = #{userId}
+    </select>
+
+    <select id="getUserByPhone" parameterType="java.lang.String" resultMap="user">
+        select C_ID, C_ROLE_ID, C_NAME, C_PHONE, C_PASSWORD, D_REGISTER_TIME, C_EMAIL
+        from
+        <include refid="tableName"/>
+        where C_PHONE = #{phone}
     </select>
 
     <select id="getUsers" resultMap="user">

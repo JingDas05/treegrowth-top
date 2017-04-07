@@ -6,7 +6,6 @@ import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
-import top.treegrowth.model.redis.PureIdentifyCode;
 
 import javax.annotation.Resource;
 import java.util.Set;
@@ -18,13 +17,12 @@ public class RedisDao {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    RedisTemplate<Object, Object> redisTemplate;
+
     //String 操作模板
     @Resource(name = "stringRedisTemplate")
     ValueOperations<String, String> valOpsStr;
-
-
-    @Autowired
-    RedisTemplate<Object, Object> redisTemplate;
 
     //object 操作模板
     @Resource(name = "redisTemplate")
@@ -33,12 +31,8 @@ public class RedisDao {
     @Resource(name = "redisTemplate")
     SetOperations<String, Object> setOps;
 
-    public void setIdentifyCode(PureIdentifyCode pureIdentifyCode) {
-        valOpsStr.set(
-                pureIdentifyCode.getPhoneNum(),
-                pureIdentifyCode.getCode(),
-                pureIdentifyCode.getExpiry(),
-                TimeUnit.SECONDS);
+    public void setIdentifyCode(String phoneNum, String code, int expire) {
+        valOpsStr.set(phoneNum, code, expire, TimeUnit.SECONDS);
     }
 
     public String getIdentifyCode(String phoneNum) {

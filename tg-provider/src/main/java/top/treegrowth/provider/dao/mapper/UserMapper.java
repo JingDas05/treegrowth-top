@@ -17,5 +17,7 @@ public interface UserMapper {
 
     User getUserBy(@Param("userId") String userId);
 
+    User getUserByPhone(@Param("phone") String phone);
+
     List<User> getUsers();
 }

@@ -86,7 +86,7 @@ public class PageServiceImpl implements IPageService {
         List<PageDetail> pageDetails = pageList.stream()
                 .map(page -> getPageDetail(page, pagesReq.getUserId()))
                 .collect(Collectors.toList());
-        return new PageRes<>(pageDetails, pageInfo.getSize(), pageInfo.isIsLastPage());
+        return new PageRes<>(pageDetails, pageInfo.getTotal(), pageInfo.isIsLastPage());
     }
 
     @Override
@@ -99,7 +99,7 @@ public class PageServiceImpl implements IPageService {
         List<PageDetail> pageDetails = pageList.stream()
                 .map(page -> getPageDetail(page, pagesReq.getUserId()))
                 .collect(Collectors.toList());
-        return new PageRes<>(pageDetails, pageInfo.getSize(), pageInfo.isIsLastPage());
+        return new PageRes<>(pageDetails, pageInfo.getTotal(), pageInfo.isIsLastPage());
     }
 
     @Override

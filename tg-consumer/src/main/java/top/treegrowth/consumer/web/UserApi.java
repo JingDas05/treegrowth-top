@@ -25,7 +25,7 @@ public class UserApi {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/identify-code", method = GET)
+    @RequestMapping(value = "/code", method = GET)
     public void getIdentifyCode(@RequestParam("phone") String phone) {
         userService.getIdentifyCode(phone);
     }

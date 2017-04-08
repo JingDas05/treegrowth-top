@@ -83,7 +83,9 @@
         <if test="diaryId != null and diaryId != ''">
             AND page.C_DIARY_ID = #{diaryId}
         </if>
-        AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+        <if test="startTime != null and endTime != null">
+            AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+        </if>
         ORDER BY D_CREATE_TIME DESC
     </select>
 

@@ -90,19 +90,6 @@ public class PageServiceImpl implements IPageService {
     }
 
     @Override
-    public PageRes<PageDetail> getPagesBy(PagesReq pagesReq) {
-        PageHelper.startPage(pagesReq.getPageNum(), pagesReq.getPageSize());
-        List<Page> pages = pageMapper.getPagesBy(pagesReq.getDiaryId(), pagesReq.getUserId());
-        checkState(pages != null, () -> new NotFoundException("没有查询到该日记下的列表"));
-        PageInfo<Page> pageInfo = new PageInfo<>(pages);
-        List<Page> pageList = pageInfo.getList();
-        List<PageDetail> pageDetails = pageList.stream()
-                .map(page -> getPageDetail(page, pagesReq.getUserId()))
-                .collect(Collectors.toList());
-        return new PageRes<>(pageDetails, pageInfo.getTotal(), pageInfo.isIsLastPage());
-    }
-
-    @Override
     public ItemRes<Boolean> deleteBy(String userId, String pageId) {
         Page page = pageMapper.getPageBy(userId, pageId);
         checkState(page != null, () -> new NotFoundException("没有查到相关每天记录"));

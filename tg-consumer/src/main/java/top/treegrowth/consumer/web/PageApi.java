@@ -34,11 +34,6 @@ public class PageApi {
         return pageService.getPagesBetween(pagesReq);
     }
 
-    @RequestMapping(value = "/diary", method = POST)
-    public PageRes<PageDetail> getPagesBy(@RequestBody PagesReq pagesReq) {
-        return pageService.getPagesBy(pagesReq);
-    }
-
     @RequestMapping(value = "/delete/{userId}/{pageId}", method = POST)
     public ItemRes<Boolean> deletePages(@PathVariable String userId, @PathVariable String pageId) {
         return pageService.deletePages(userId, pageId);

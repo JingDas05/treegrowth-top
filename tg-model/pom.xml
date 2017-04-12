@@ -11,5 +11,11 @@
 
     <artifactId>tg-model</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>tg-common</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

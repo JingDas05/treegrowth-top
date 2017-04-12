@@ -88,23 +88,4 @@
         </if>
         ORDER BY D_CREATE_TIME DESC
     </select>
-
-    <select id="getPagesBy" parameterType="java.lang.String" resultMap="page">
-        SELECT
-        page.C_ID,
-        page.C_DIARY_ID,
-        page.C_NAME,
-        page.D_CREATE_TIME,
-        page.C_MIND,
-        page.C_CONTENT,
-        page.C_WEATHER
-        FROM
-        db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
-        WHERE
-        diary.C_AUTHOR_ID = #{userId}
-        <if test="diaryId != null and diaryId != ''">
-            AND page.C_DIARY_ID = #{diaryId}
-        </if>
-        ORDER BY D_CREATE_TIME DESC
-    </select>
 </mapper>

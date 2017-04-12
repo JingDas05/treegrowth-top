@@ -24,7 +24,5 @@ public interface PageMapper {
                                @Param("diaryId") String diaryId,
                                @Param("userId") String userId);
 
-    List<Page> getPagesBy(@Param("diaryId") String diaryId, @Param("userId") String userId);
-
     void deleteBy(@Param("userId") String userId, @Param("pageId") String pageId);
 }

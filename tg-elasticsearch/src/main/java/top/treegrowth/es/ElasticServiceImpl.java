@@ -74,7 +74,7 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
         searchResponse = client.prepareSearch(INDEX)
                 .setTypes(TYPE)
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-                .setQuery(multiMatchQuery(queryReq.getKeyWord(), NAME, CONTENT))
+                .setQuery(multiMatchQuery(queryReq.getKeyword(), NAME, CONTENT))
                 .setFrom(queryReq.getFrom())
                 .setSize(queryReq.getSize())
                 .highlighter(highlightBuilder)

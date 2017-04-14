@@ -9,16 +9,16 @@ import java.io.Serializable;
 public class QueryReq implements Serializable {
 
     private static final long serialVersionUID = -3921743374052107766L;
-    private String keyWord;
+    private String keyword;
     private int from;
     private int size;
 
-    public String getKeyWord() {
-        return keyWord;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setKeyWord(String keyWord) {
-        this.keyWord = keyWord;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public int getFrom() {

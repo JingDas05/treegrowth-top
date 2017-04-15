@@ -18,9 +18,9 @@ public class PagesReq implements Serializable {
     private int pageNum;
     private int pageSize;
     private String diaryId;
-    @JsonFormat(shape= STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    @JsonFormat(shape= STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT+8")
     private Date startTime;
-    @JsonFormat(shape= STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    @JsonFormat(shape= STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT+8")
     private Date endTime;
 
     public String getUserId() {

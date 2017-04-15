@@ -71,6 +71,8 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
         HighlightBuilder highlightBuilder = new HighlightBuilder();
         highlightBuilder.field(NAME);
         highlightBuilder.field(CONTENT);
+        highlightBuilder.preTags("<b style='color:#ff0000'>");
+        highlightBuilder.postTags("</b>");
         searchResponse = client.prepareSearch(INDEX)
                 .setTypes(TYPE)
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)

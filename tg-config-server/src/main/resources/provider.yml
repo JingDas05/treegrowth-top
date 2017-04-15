@@ -36,6 +36,7 @@ spring:
       enabled: true
     job:
       enabled: false
+
 #  jpa:
 #    generate-ddl: true
 #    show-sql: true

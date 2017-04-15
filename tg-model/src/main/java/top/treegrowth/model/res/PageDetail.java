@@ -1,7 +1,11 @@
 package top.treegrowth.model.res;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
+
+import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 
 /**
  * @author wusi
@@ -14,6 +18,7 @@ public class PageDetail implements Serializable {
     private String diaryId;
     private String diaryName;
     private String name;
+    @JsonFormat(shape= STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date createTime;
     private String mind;
     private String content;

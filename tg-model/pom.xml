@@ -16,6 +16,11 @@
             <groupId>top.treegrowth</groupId>
             <artifactId>tg-common</artifactId>
         </dependency>
+        <!--validation-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

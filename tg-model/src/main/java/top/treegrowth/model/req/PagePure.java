@@ -1,7 +1,11 @@
 package top.treegrowth.model.req;
 
 import top.treegrowth.model.entity.Page;
+import top.treegrowth.model.req.group.Create;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -11,11 +15,16 @@ import java.io.Serializable;
 public class PagePure implements Serializable {
     private static final long serialVersionUID = -4678443118500127306L;
 
+    @NotNull(groups = {Create.class})
     private String diaryId;
+    @Min(1)
+    @Max(15)
     private String name;
     private String mind;
+    @NotNull(groups = {Create.class})
     private String content;
     private String weather;
+    @NotNull(groups = {Create.class})
     private String authorId;
 
     public Page toPage() {

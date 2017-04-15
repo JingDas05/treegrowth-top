@@ -1,6 +1,7 @@
 package top.treegrowth.consumer.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.consumer.service.PageService;
 import top.treegrowth.model.req.PagePure;
 import top.treegrowth.model.req.PagesReq;
+import top.treegrowth.model.req.group.Create;
 import top.treegrowth.model.res.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -25,7 +27,7 @@ public class PageApi {
     private PageService pageService;
 
     @RequestMapping(value = "/create", method = POST)
-    public PageDetail createPage(@RequestBody PagePure pagePure) {
+    public PageDetail createPage(@RequestBody @Validated({Create.class}) PagePure pagePure) {
         return pageService.createPage(pagePure);
     }
 

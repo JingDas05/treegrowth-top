@@ -1,10 +1,12 @@
 package top.treegrowth.consumer.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.treegrowth.consumer.service.DiaryService;
+import top.treegrowth.model.req.group.Create;
 import top.treegrowth.model.res.DiaryDetail;
 import top.treegrowth.model.req.DiaryPure;
 import top.treegrowth.model.req.DiaryReq;
@@ -24,7 +26,7 @@ public class DiaryApi {
     private DiaryService diaryService;
 
     @RequestMapping(value = "/create", method = POST)
-    public DiaryDetail createDiary(@RequestBody DiaryPure diaryPure) {
+    public DiaryDetail createDiary(@RequestBody @Validated({Create.class}) DiaryPure diaryPure) {
         return diaryService.createDiary(diaryPure);
     }
 

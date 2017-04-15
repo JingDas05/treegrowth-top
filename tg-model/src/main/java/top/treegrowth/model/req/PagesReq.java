@@ -2,6 +2,7 @@ package top.treegrowth.model.req;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +16,9 @@ public class PagesReq implements Serializable {
 
     private static final long serialVersionUID = -5518814713181344386L;
     private String userId;
+    @NotNull
     private int pageNum;
+    @NotNull
     private int pageSize;
     private String diaryId;
     @JsonFormat(shape= STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT+8")

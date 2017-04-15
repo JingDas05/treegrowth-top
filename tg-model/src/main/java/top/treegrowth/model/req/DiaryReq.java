@@ -1,5 +1,6 @@
 package top.treegrowth.model.req;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,8 +10,11 @@ import java.io.Serializable;
 public class DiaryReq implements Serializable {
 
     private static final long serialVersionUID = 4534155009205757647L;
+    @NotNull
     private String userId;
+    @NotNull
     private int pageNum;
+    @NotNull
     private int pageSize;
 
     public String getUserId() {

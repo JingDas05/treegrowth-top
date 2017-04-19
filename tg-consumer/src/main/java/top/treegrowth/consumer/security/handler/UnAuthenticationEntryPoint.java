@@ -1,4 +1,4 @@
-package top.treegrowth.consumer.security;
+package top.treegrowth.consumer.security.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -14,14 +14,13 @@ import java.io.IOException;
  * @version 2017/4/18 7:03.
  */
 @Component
-public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint{
+public class UnAuthenticationEntryPoint implements AuthenticationEntryPoint{
 
 
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
-
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "自定义");
     }
 }

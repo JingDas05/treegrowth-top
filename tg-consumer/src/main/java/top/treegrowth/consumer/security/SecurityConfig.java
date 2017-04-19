@@ -1,6 +1,7 @@
 package top.treegrowth.consumer.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import top.treegrowth.consumer.security.handler.MySimpleUrlAuthenticationSuccessHandler;
+import top.treegrowth.consumer.security.handler.UnAuthenticationEntryPoint;
 
 /**
  * @author wusi
@@ -18,7 +20,7 @@ import top.treegrowth.consumer.security.handler.MySimpleUrlAuthenticationSuccess
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    private RestAuthenticationEntryPoint authenticationEntryPoint;
+    private UnAuthenticationEntryPoint authenticationEntryPoint;
     @Autowired
     private MySimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler;
 
@@ -42,8 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .formLogin()
                 .successHandler(authenticationSuccessHandler)
-                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .failureHandler(myFailureHandler())
                 .and()
                 .logout();
+    }
+
+    @Bean
+    public SimpleUrlAuthenticationFailureHandler myFailureHandler() {
+        return new SimpleUrlAuthenticationFailureHandler();
     }
 }

@@ -58,4 +58,9 @@ public class UserServiceImpl implements IUserService {
         redisDao.setIdentifyCode(phone, newCode, 600);
         return newCode;
     }
+
+    @Override
+    public User findUserByPhone(String phone) {
+        return userMapper.getUserByPhone(phone);
+    }
 }

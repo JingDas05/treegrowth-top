@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import top.treegrowth.model.entity.User;
 import top.treegrowth.model.res.PureUser;
 import top.treegrowth.model.res.ReturnUser;
 import top.treegrowth.provider.service.IUserService;
@@ -22,15 +23,20 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class UserApi {
 
     @Autowired
-    private IUserService IUserService;
+    private IUserService userService;
 
     @RequestMapping(value = "/code", method = GET)
     public String getIdentifyCode(@RequestParam("phone") String phone) throws ServiceException {
-        return IUserService.getIdentifyCode(phone);
+        return userService.getIdentifyCode(phone);
+    }
+
+    @RequestMapping(value = "/phone", method = GET)
+    public User findUserByPhone(@RequestParam("phone") String phone) throws ServiceException {
+        return userService.findUserByPhone(phone);
     }
 
     @RequestMapping(method = POST)
     public ReturnUser phoneRegister(@RequestBody PureUser pureUser) throws ServiceException {
-        return IUserService.phoneRegister(pureUser);
+        return userService.phoneRegister(pureUser);
     }
 }

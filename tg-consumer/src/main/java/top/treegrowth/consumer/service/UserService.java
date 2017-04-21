@@ -4,6 +4,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import top.treegrowth.model.entity.User;
 import top.treegrowth.model.res.PureUser;
 import top.treegrowth.model.res.ReturnUser;
 
@@ -23,5 +24,8 @@ public interface UserService {
     void getIdentifyCode(@RequestParam("phone") String phone);
 
     @RequestMapping(method = POST)
-    ReturnUser phoneRegister(@RequestBody PureUser pureUser) throws Exception;
+    ReturnUser phoneRegister(@RequestBody PureUser pureUser);
+
+    @RequestMapping(value = "/phone", method = GET)
+    User findUserByPhone(@RequestParam("phone") String phone);
 }

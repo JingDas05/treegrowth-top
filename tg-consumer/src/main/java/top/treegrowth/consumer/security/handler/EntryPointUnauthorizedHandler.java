@@ -14,13 +14,13 @@ import java.io.IOException;
  * @version 2017/4/18 7:03.
  */
 @Component
-public class UnAuthenticationEntryPoint implements AuthenticationEntryPoint{
+public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint{
 
 
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "自定义");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }

@@ -1,4 +1,4 @@
-package top.treegrowth.consumer.web;
+package top.treegrowth.consumer.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

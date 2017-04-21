@@ -1,6 +1,7 @@
 package top.treegrowth.model.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable{
 
@@ -12,6 +13,9 @@ public class User implements Serializable{
     private String password;
     private String registerTime;
     private String email;
+
+    private Date lastPasswordReset;
+
 
     public String getId() {
         return id;
@@ -67,6 +71,14 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getLastPasswordReset() {
+        return lastPasswordReset;
+    }
+
+    public void setLastPasswordReset(Date lastPasswordReset) {
+        this.lastPasswordReset = lastPasswordReset;
     }
 
     @Override

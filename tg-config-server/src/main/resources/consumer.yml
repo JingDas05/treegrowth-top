@@ -13,3 +13,14 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000
+
+tg:
+  token:
+    header: X-Auth-Token
+    secret: ssssss
+    expiration: 1800
+  route:
+    authentication: auth
+    refresh: refresh
+    protected: protected
+

@@ -17,7 +17,7 @@ hystrix:
 tg:
   token:
     header: X-Auth-Token
-    secret: ssssss
+    secret: 01090109qweasdzxc
     expiration: 1800
   route:
     authentication: auth

@@ -16,7 +16,7 @@ import static javax.servlet.DispatcherType.REQUEST;
  * @version 2017/4/19 6:57.
  */
 @Configuration
-public class EntryPointUnauthorizedHandler implements WebApplicationInitializer {
+public class FilterStartup implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class)

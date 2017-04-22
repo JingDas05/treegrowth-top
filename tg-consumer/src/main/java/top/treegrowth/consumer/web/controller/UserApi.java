@@ -1,6 +1,8 @@
 package top.treegrowth.consumer.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,8 @@ public class UserApi {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/code", method = GET)
     public void getIdentifyCode(@RequestParam("phone") String phone) {
@@ -31,8 +35,8 @@ public class UserApi {
     }
 
     @RequestMapping(method = POST)
-    public ReturnUser phoneRegister(@RequestBody PureUser pureUser) throws Exception {
+    public ReturnUser phoneRegister(@RequestBody @Validated PureUser pureUser) throws Exception {
+        pureUser.setPassword(passwordEncoder.encode(pureUser.getPassword()));
         return userService.phoneRegister(pureUser);
     }
-
 }

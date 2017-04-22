@@ -24,10 +24,10 @@ public class TgUser implements UserDetails {
 
 
     private Collection<? extends GrantedAuthority> authorities;
-    private Boolean accountNonExpired = false;
-    private Boolean accountNonLocked = false;
-    private Boolean credentialsNonExpired = false;
-    private Boolean enabled = false;
+    private Boolean accountNonExpired = true;
+    private Boolean accountNonLocked = true;
+    private Boolean credentialsNonExpired = true;
+    private Boolean enabled = true;
 
     public TgUser() {
         super();

@@ -1,9 +1,14 @@
 package top.treegrowth.model.res;
 
+import javax.validation.constraints.NotNull;
+
 public class PureUser {
 
+    @NotNull
     private String phone;
+    @NotNull
     private String password;
+    @NotNull
     private String code;
 
     public String getPhone() {

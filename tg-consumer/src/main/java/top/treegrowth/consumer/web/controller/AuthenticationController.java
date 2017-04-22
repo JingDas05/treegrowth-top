@@ -63,7 +63,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "${tg.route.refresh}", method = RequestMethod.GET)
     public ResponseEntity<?> authenticationRequest(HttpServletRequest request) {
-        String token = request.getHeader(tokenHeader);
+        String token = request.getHeader(this.tokenHeader);
         String username = this.tokenUtils.getUsernameFromToken(token);
         TgUser user = (TgUser) this.userDetailsService.loadUserByUsername(username);
         if (this.tokenUtils.canTokenBeRefreshed(token, user.getLastPasswordReset())) {
@@ -73,5 +73,4 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
 }

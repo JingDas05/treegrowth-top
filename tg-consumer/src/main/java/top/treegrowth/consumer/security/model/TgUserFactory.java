@@ -11,7 +11,7 @@ public class TgUserFactory {
 
     public static TgUser get(User user) {
         return new TgUser(
-              user.getId(),
+                user.getId(),
                 user.getRoleId(),
                 user.getName(),
                 user.getPhone(),

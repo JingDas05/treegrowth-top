@@ -45,7 +45,7 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(pureUser.getPassword());
         user.setPhone(pureUser.getPhone());
         userMapper.createUser(user);
-        redisDao.setIdentifyCode(pureUser.getPhone(), null, 1);
+        redisDao.setIdentifyCode(pureUser.getPhone(), "", 1);
         return new ReturnUser(user);
     }
 

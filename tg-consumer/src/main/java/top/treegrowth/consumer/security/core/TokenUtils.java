@@ -25,10 +25,10 @@ public class TokenUtils {
     private final String AUDIENCE_MOBILE = "mobile";
     private final String AUDIENCE_TABLET = "tablet";
 
-    @Value("${cerberus.token.secret}")
+    @Value("${tg.token.secret}")
     private String secret;
 
-    @Value("${cerberus.token.expiration}")
+    @Value("${tg.token.expiration}")
     private Long expiration;
 
     public String getUsernameFromToken(String token) {
@@ -119,7 +119,7 @@ public class TokenUtils {
     }
 
     public String generateToken(UserDetails userDetails, Device device) {
-        Map<String, Object> claims = new HashMap<String, Object>();
+        Map<String, Object> claims = new HashMap<>();
         claims.put("sub", userDetails.getUsername());
         claims.put("audience", this.generateAudience(device));
         claims.put("created", this.generateCurrentDate());

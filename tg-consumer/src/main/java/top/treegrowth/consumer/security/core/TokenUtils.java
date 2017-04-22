@@ -15,6 +15,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import top.treegrowth.consumer.security.model.TgUser;
 
+/**
+ * JWT
+ *
+ * @author wusi
+ * @version 2017/4/21 21:03.
+ */
+
 @Component
 public class TokenUtils {
 
@@ -30,6 +37,23 @@ public class TokenUtils {
 
     @Value("${tg.token.expiration}")
     private Long expiration;
+
+    //退出时使token sub为空，验证token时就不会取出username 也就验证成功不了了
+    public boolean expireToken(String token) {
+        boolean success = true;
+        try {
+            final Claims claims = this.getClaimsFromToken(token);
+            claims.put("sub", null);
+            Jwts.builder()
+                    .setClaims(claims)
+                    .setExpiration(new Date())
+                    .signWith(SignatureAlgorithm.HS512, this.secret)
+                    .compact();
+        } catch (Exception e) {
+            success = false;
+        }
+        return success;
+    }
 
     public String getUsernameFromToken(String token) {
         String username;
@@ -64,6 +88,14 @@ public class TokenUtils {
         return expiration;
     }
 
+    public String generateToken(UserDetails userDetails, Device device) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("sub", userDetails.getUsername());
+        claims.put("audience", this.generateAudience(device));
+        claims.put("created", this.generateCurrentDate());
+        return this.generateToken(claims);
+    }
+
     public String getAudienceFromToken(String token) {
         String audience;
         try {
@@ -73,6 +105,14 @@ public class TokenUtils {
             audience = null;
         }
         return audience;
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        TgUser user = (TgUser) userDetails;
+        final String username = this.getUsernameFromToken(token);
+        final Date created = this.getCreatedDateFromToken(token);
+        final Date expiration = this.getExpirationDateFromToken(token);
+        return (username.equals(user.getUsername()) && !(this.isTokenExpired(token)) && !(this.isCreatedBeforeLastPasswordReset(created, user.getLastPasswordReset())));
     }
 
     private Claims getClaimsFromToken(String token) {
@@ -118,14 +158,6 @@ public class TokenUtils {
         return (this.AUDIENCE_TABLET.equals(audience) || this.AUDIENCE_MOBILE.equals(audience));
     }
 
-    public String generateToken(UserDetails userDetails, Device device) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", userDetails.getUsername());
-        claims.put("audience", this.generateAudience(device));
-        claims.put("created", this.generateCurrentDate());
-        return this.generateToken(claims);
-    }
-
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -149,14 +181,6 @@ public class TokenUtils {
             refreshedToken = null;
         }
         return refreshedToken;
-    }
-
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        TgUser user = (TgUser) userDetails;
-        final String username = this.getUsernameFromToken(token);
-        final Date created = this.getCreatedDateFromToken(token);
-        final Date expiration = this.getExpirationDateFromToken(token);
-    return (username.equals(user.getUsername()) && !(this.isTokenExpired(token)) && !(this.isCreatedBeforeLastPasswordReset(created, user.getLastPasswordReset())));
     }
 
     private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {

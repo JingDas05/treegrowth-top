@@ -17,7 +17,8 @@ public class ProtectedController {
   demonstrated below with 'securityService'.
   **/
   @RequestMapping(method = RequestMethod.GET)
-  @PreAuthorize("hasRole('User')")
+  @PreAuthorize("isAuthenticated()")
+//  @PreAuthorize("hasRole('User')")
 //  @PreAuthorize("@securityService.hasProtectedAccess()")
   public ResponseEntity<?> getDaHoney() {
     return ResponseEntity.ok(":O");

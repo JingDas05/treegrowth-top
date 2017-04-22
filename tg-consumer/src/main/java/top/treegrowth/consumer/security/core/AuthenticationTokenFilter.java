@@ -19,31 +19,32 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
-  @Value("${tg.token.header}")
-  private String tokenHeader;
+    @Value("${tg.token.header}")
+    private String tokenHeader;
 
-  @Autowired
-  private TokenUtils tokenUtils;
+    @Autowired
+    private TokenUtils tokenUtils;
 
-  @Autowired
-  private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    //这个方法是在访问受保护的资源的时候使用的，验证token的有效性
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-    HttpServletRequest httpRequest = (HttpServletRequest) request;
-    String authToken = httpRequest.getHeader(this.tokenHeader);
-    String username = this.tokenUtils.getUsernameFromToken(authToken);
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String authToken = httpRequest.getHeader(this.tokenHeader);
+        String username = this.tokenUtils.getUsernameFromToken(authToken);
 
-    if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-      UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-      if (this.tokenUtils.validateToken(authToken, userDetails)) {
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-      }
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            if (this.tokenUtils.validateToken(authToken, userDetails)) {
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        }
+
+        chain.doFilter(request, response);
     }
-
-    chain.doFilter(request, response);
-  }
 }

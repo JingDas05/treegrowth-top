@@ -24,7 +24,6 @@ import top.treegrowth.consumer.security.model.response.AuthenticationResponse;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("${tg.route.authentication}")
 public class AuthenticationController {
 
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -41,7 +40,7 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "${tg.route.login}", method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody AuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
         // 开始验证
@@ -72,5 +71,11 @@ public class AuthenticationController {
         } else {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @RequestMapping(value = "/log", method = RequestMethod.GET)
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String token = request.getHeader(this.tokenHeader);
+        return ResponseEntity.ok(tokenUtils.expireToken(token));
     }
 }

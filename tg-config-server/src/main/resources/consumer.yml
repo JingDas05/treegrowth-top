@@ -20,7 +20,8 @@ tg:
     secret: 01090109qweasdzxc
     expiration: 1800
   route:
-    authentication: auth
+    login: login
+    logout: logout
     refresh: refresh
     protected: protected
 

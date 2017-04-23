@@ -16,6 +16,9 @@ public class Page {
     private String content;
     private String weather;
 
+    //elastic 过滤字段
+    private String authorId;
+
     public String getId() {
         return id;
     }
@@ -70,5 +73,13 @@ public class Page {
 
     public void setWeather(String weather) {
         this.weather = weather;
+    }
+
+    public String getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 }

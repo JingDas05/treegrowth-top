@@ -12,6 +12,7 @@ public class QueryReq implements Serializable {
     private String keyword;
     private int from;
     private int size;
+    private String userId;
 
     public String getKeyword() {
         return keyword;
@@ -35,5 +36,13 @@ public class QueryReq implements Serializable {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

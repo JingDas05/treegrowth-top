@@ -22,6 +22,7 @@ import top.treegrowth.consumer.security.model.request.AuthenticationRequest;
 import top.treegrowth.consumer.security.model.response.AuthenticationResponse;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @RestController
 public class AuthenticationController {
@@ -78,4 +79,9 @@ public class AuthenticationController {
         String token = request.getHeader(this.tokenHeader);
         return ResponseEntity.ok(tokenUtils.expireToken(token));
     }
+
+//    @RequestMapping(value = "/api/user", method = RequestMethod.GET)
+//    public ResponseEntity<?> getCurrentUser(Principal principal) {
+//        return ResponseEntity.ok(principal);
+//    }
 }

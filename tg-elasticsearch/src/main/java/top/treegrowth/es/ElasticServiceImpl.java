@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 import static top.treegrowth.common.utils.Constants.DATE_FORMAT;
 
 /**
@@ -40,6 +41,7 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
 
     @Autowired
     private TransportClient client;
+    private static final String AUTHOR_ID = "authorId";
     private static final String NAME = "name";
     private static final String CONTENT = "content";
     public static final String INDEX = "diary";
@@ -77,6 +79,7 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
                 .setTypes(TYPE)
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
                 .setQuery(multiMatchQuery(queryReq.getKeyword(), NAME, CONTENT))
+                .setPostFilter(termQuery(AUTHOR_ID, queryReq.getUserId()))
                 .setFrom(queryReq.getFrom())
                 .setSize(queryReq.getSize())
                 .highlighter(highlightBuilder)

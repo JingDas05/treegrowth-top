@@ -1,9 +1,12 @@
 package top.treegrowth.consumer.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.treegrowth.consumer.security.model.TgUser;
 import top.treegrowth.consumer.service.SearchService;
 import top.treegrowth.model.elastic.QueryReq;
 import top.treegrowth.model.res.PageDetail;
@@ -22,8 +25,10 @@ public class SearchApi {
     @Autowired
     private SearchService searchService;
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(method = POST)
-    PageRes<PageDetail> search(@RequestBody QueryReq queryReq) {
+    PageRes<PageDetail> search(@RequestBody QueryReq queryReq, @AuthenticationPrincipal TgUser tgUser) {
+        queryReq.setUserId(tgUser.getId());
         return searchService.search(queryReq);
     }
 }

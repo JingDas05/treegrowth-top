@@ -67,6 +67,7 @@ public class PageServiceImpl implements IPageService {
         Page page = pagePure.toPage();
         page.setId(uuid());
         page.setCreateTime(new Date());
+        page.setAuthorId(pagePure.getAuthorId());
         pageMapper.createPage(page);
 
         sender.send(MessageBuilder.withPayload(page)

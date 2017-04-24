@@ -19,50 +19,50 @@ import top.treegrowth.redis.config.RedisConfig;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {RedisDao.class, RedisConfig.class},
-        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = {RedisDao.class, RedisConfig.class},
+//        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class RedisDaoTests {
 
     static ConfigurableApplicationContext context;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
-
-    @LocalServerPort
-    private int port;
-
-    @BeforeClass
-    public static void startEureka() {
-        context = SpringApplication.run(EurekaServer.class,
-                "--server.port=1111",
-                "--eureka.instance.leaseRenewalIntervalInSeconds=1");
-    }
-
-    @AfterClass
-    public static void closeEureka() {
-        context.close();
-    }
-
-    @Test
-    public void shouldRegisterRedisServer() throws Exception {
-
-        Thread.sleep(3000);
-        ResponseEntity<String> response = this.restTemplate.getForEntity(
-                "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
-                String.class, "15640909868");
-        then(response.getBody()).isEqualTo("5566");
-
-        Thread.sleep(21000);
-        ResponseEntity<String> responseExpire = this.restTemplate.getForEntity(
-                "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
-                String.class, "15640909868");
-        then(responseExpire.getBody()).isEqualTo("already expire");
-    }
-
-    @Configuration
-    @EnableAutoConfiguration
-    @EnableEurekaServer
-    static class EurekaServer {
-    }
+//    @Autowired
+//    private TestRestTemplate restTemplate;
+//
+//    @LocalServerPort
+//    private int port;
+//
+//    @BeforeClass
+//    public static void startEureka() {
+//        context = SpringApplication.run(EurekaServer.class,
+//                "--server.port=1111",
+//                "--eureka.instance.leaseRenewalIntervalInSeconds=1");
+//    }
+//
+//    @AfterClass
+//    public static void closeEureka() {
+//        context.close();
+//    }
+//
+//    @Test
+//    public void shouldRegisterRedisServer() throws Exception {
+//
+//        Thread.sleep(3000);
+//        ResponseEntity<String> response = this.restTemplate.getForEntity(
+//                "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
+//                String.class, "15640909868");
+//        then(response.getBody()).isEqualTo("5566");
+//
+//        Thread.sleep(21000);
+//        ResponseEntity<String> responseExpire = this.restTemplate.getForEntity(
+//                "http://localhost:" + this.port + "/api/service/redis/{phoneNum}",
+//                String.class, "15640909868");
+//        then(responseExpire.getBody()).isEqualTo("already expire");
+//    }
+//
+//    @Configuration
+//    @EnableAutoConfiguration
+//    @EnableEurekaServer
+//    static class EurekaServer {
+//    }
 }

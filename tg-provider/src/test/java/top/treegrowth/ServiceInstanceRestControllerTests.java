@@ -20,48 +20,48 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderApplication.class},
-        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@ActiveProfiles("test")
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = {ProviderApplication.class},
+//        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+//@ActiveProfiles("test")
 public class ServiceInstanceRestControllerTests {
 
     static ConfigurableApplicationContext eurekaServer;
 
-    @BeforeClass
-    public static void startEureka() {
-        eurekaServer = SpringApplication.run(EurekaServer.class,
-                "--server.port=1111",
-                "--eureka.instance.leaseRenewalIntervalInSeconds=1");
-    }
-
-    @AfterClass
-    public static void closeEureka() {
-        eurekaServer.close();
-    }
-
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    private TestRestTemplate testRestTemplate;
-
-    @Test
-    public void shouldRegisterClientInEurekaServer() throws InterruptedException {
-        // registration has to take place...
-        Thread.sleep(3000);
-
-        ResponseEntity<String> response = this.testRestTemplate.getForEntity(
-                "http://localhost:" + this.port + "/service-instances/tg-provider",
-                String.class);
-
-        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        then(response.getBody()).contains("tg-provider");
-    }
-
-    @Configuration
-    @EnableAutoConfiguration
-    @EnableEurekaServer
-    static class EurekaServer {
-    }
+//    @BeforeClass
+//    public static void startEureka() {
+//        eurekaServer = SpringApplication.run(EurekaServer.class,
+//                "--server.port=1111",
+//                "--eureka.instance.leaseRenewalIntervalInSeconds=1");
+//    }
+//
+//    @AfterClass
+//    public static void closeEureka() {
+//        eurekaServer.close();
+//    }
+//
+//    @LocalServerPort
+//    private int port;
+//
+//    @Autowired
+//    private TestRestTemplate testRestTemplate;
+//
+//    @Test
+//    public void shouldRegisterClientInEurekaServer() throws InterruptedException {
+//        // registration has to take place...
+//        Thread.sleep(3000);
+//
+//        ResponseEntity<String> response = this.testRestTemplate.getForEntity(
+//                "http://localhost:" + this.port + "/service-instances/tg-provider",
+//                String.class);
+//
+//        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        then(response.getBody()).contains("tg-provider");
+//    }
+//
+//    @Configuration
+//    @EnableAutoConfiguration
+//    @EnableEurekaServer
+//    static class EurekaServer {
+//    }
 }

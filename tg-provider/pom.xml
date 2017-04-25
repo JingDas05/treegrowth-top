@@ -32,6 +32,13 @@
             <artifactId>tg-elasticsearch</artifactId>
         </dependency>
 
+        <!--短信验证码，阿里大于-->
+        <dependency>
+            <groupId>top.treegrowth</groupId>
+            <artifactId>alibaba-dy-sms</artifactId>
+            <version>${albaba-dayu.version}</version>
+        </dependency>
+
         <!--spring-cloud-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -121,6 +128,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

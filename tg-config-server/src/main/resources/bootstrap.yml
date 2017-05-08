@@ -1,7 +1,7 @@
 server:
   port: 8888
 
-#http://localhost:1121/provider/dev 访问本地配置
+#http://localhost:8888/provider/dev 访问本地配置
 
 spring:
   application:

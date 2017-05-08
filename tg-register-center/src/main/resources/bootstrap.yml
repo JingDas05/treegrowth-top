@@ -1,6 +1,6 @@
 spring:
   application:
-    name: provider
+    name: register
   cloud:
     config:
 #      uri: http://localhost:8888/

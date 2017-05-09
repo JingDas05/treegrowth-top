@@ -3,6 +3,5 @@ spring:
     name: register
   cloud:
     config:
-#      uri: http://localhost:8888/
-      uri: http://172.17.49.151:8888/
+      uri: http://localhost:8888/
       profile: dev

@@ -1,0 +1,9 @@
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.17.49.151:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    preferIpAddress: true

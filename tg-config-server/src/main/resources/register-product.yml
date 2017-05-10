@@ -1,9 +1,7 @@
-server:
-  port: 8761
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      default-zone: http://localhost:${server.port}/eureka/
+      default-zone: http://172.17.49.151:8761/eureka/

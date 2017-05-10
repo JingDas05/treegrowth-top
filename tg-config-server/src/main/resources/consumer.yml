@@ -12,7 +12,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 5000
 
 tg:
   token:

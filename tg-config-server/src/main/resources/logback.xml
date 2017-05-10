@@ -28,13 +28,13 @@
         </layout>
     </appender>
 
-    <logger name="top.treegrowth.config" level="error"
+    <logger name="top.treegrowth.config" level="info"
             additivity="false">
         <appender-ref ref="FILE-LAYOUT" />
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <root level="error">
+    <root level="info">
         <appender-ref ref="FILE-LAYOUT" />
         <appender-ref ref="STDOUT" />
     </root>

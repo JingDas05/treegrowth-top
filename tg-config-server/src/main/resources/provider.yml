@@ -29,8 +29,6 @@ spring:
         min-idle: 0
       # 连接超时时间（毫秒）
       timeout: 0
-#  profiles:
-#    active: dev
   batch:
     initializer:
       enabled: true
@@ -56,7 +54,7 @@ pagehelper:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.17.49.151:8761/eureka/
+      defaultZone: http://172.17.49.150:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:

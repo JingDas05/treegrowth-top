@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.17.49.151:8761/eureka/
+      defaultZone: http://172.17.49.150:8761/eureka/
 
 hystrix:
   command:
@@ -24,4 +24,3 @@ tg:
     logout: logout
     refresh: refresh
     protected: protected
-

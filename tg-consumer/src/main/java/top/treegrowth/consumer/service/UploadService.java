@@ -13,7 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @version 2017/6/21 22:03.
  */
 @FeignClient("provider")
-@RequestMapping(value = "api/service/")
+@RequestMapping(value = "api/service")
 public interface UploadService {
 
     @RequestMapping(value = "/upload", method = POST)

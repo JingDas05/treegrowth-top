@@ -100,6 +100,17 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--spring cloud 上传图片，解决Current request is not a multipart request Exception-->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+            <version>2.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

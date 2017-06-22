@@ -26,13 +26,13 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
 
     @Override
     public void process (Map<String, Object> data, RequestTemplate template) {
+        //构建边界
         String boundary = createBoundary();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
         try {
             PrintWriter writer = new PrintWriter(outputStream);
             for (Map.Entry<String, Object> entry : data.entrySet()) {
-                writer.append("--" + boundary).append(CRLF);
+                writer.append("--").append(boundary).append(CRLF);
                 if (isPayload(entry.getValue())) {
                     writeByteOrFile(outputStream, writer, entry.getKey(), entry.getValue());
                 } else {
@@ -40,8 +40,7 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
                 }
                 writer.append(CRLF).flush();
             }
-
-            writer.append("--" + boundary + "--").append(CRLF).flush();
+            writer.append("--").append(boundary).append("--").append(CRLF).flush();
         } catch (Throwable throwable) {
             try {
                 outputStream.close();
@@ -49,7 +48,6 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
             }
             throw throwable;
         }
-
         String contentType = new StringBuilder()
                 .append(CONTENT_TYPE)
                 .append("; boundary=")
@@ -70,11 +68,7 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
         return CONTENT_TYPE;
     }
 
-    /**
-     * Checks is passed object a supported file's type or not.
-     *
-     * @param value form file parameter.
-     */
+    //检查传递的object是否是文件类型
     protected boolean isPayload (Object value) {
         return value != null && (value instanceof File || value instanceof byte[]);
     }
@@ -158,6 +152,7 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
                                    String contentType,
                                    byte[] bytes
     ) {
+        //将元信息写入到 writer
         writeFileMeta(writer, name, originalFilename, contentType);
         try {
             output.write(bytes);
@@ -167,22 +162,19 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
         writer.flush();
     }
 
+    //将元信息写入到writer
     private void writeFileMeta (PrintWriter writer, String name, String fileName, String contentValue) {
         String contentDesposition = new StringBuilder()
                 .append("Content-Disposition: form-data; name=\"").append(name).append("\"; ")
                 .append("filename=\"").append(fileName).append("\"")
                 .toString();
-
         if (contentValue == null) {
-            contentValue = fileName != null
-                    ? URLConnection.guessContentTypeFromName(fileName)
-                    : "application/octet-stream";
+            contentValue = fileName != null ? URLConnection.guessContentTypeFromName(fileName) : "application/octet-stream";
         }
         String contentType = new StringBuilder()
                 .append("Content-Type: ")
                 .append(contentValue)
                 .toString();
-
         writer.append(contentDesposition).append(CRLF);
         writer.append(contentType).append(CRLF);
         writer.append("Content-Transfer-Encoding: binary").append(CRLF);

@@ -93,12 +93,12 @@ public class FormEncoder implements Encoder {
                 break;
             }
         }
-
+        // 如果类型信息为空，那么就用默认编码器编码
         if (formType.isEmpty()) {
             delegate.encode(object, bodyType, template);
             return;
         }
-
+        // 否则就将data转成map类型进行处理，表单信息为map
         @SuppressWarnings("unchecked")
         Map<String, Object> data = (Map<String, Object>) object;
         processors.get(formType).process(data, template);

@@ -1,11 +1,12 @@
 package top.treegrowth.consumer.config;
 
+import feign.codec.Encoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
+import top.treegrowth.consumer.support.multipart.SpringFormEncoder;
 
-import java.beans.Encoder;
 
 /**
  * @author wusi

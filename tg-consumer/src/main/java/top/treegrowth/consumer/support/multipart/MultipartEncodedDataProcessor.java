@@ -9,6 +9,8 @@ import java.util.Map;
 import static feign.Util.UTF_8;
 
 /**
+ * 自己构建multipart的header，之后远程调用
+ *
  * Multipart form data implementation of {@link top.treegrowth.consumer.support.multipart.FormEncoder}.
  *
  * @author Artem Labazin <xxlabaza@gmail.com>
@@ -110,7 +112,6 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
      */
     protected void writeFile (OutputStream output, PrintWriter writer, String name, String contentType, File file) {
         writeFileMeta(writer, name, file.getName(), contentType);
-
         InputStream input = null;
         try {
             input = new FileInputStream(file);
@@ -152,7 +153,7 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
                                    String contentType,
                                    byte[] bytes
     ) {
-        //将元信息写入到 writer
+        //将元信息写入到 writer, 这个name是前端传递进来的form数据里的key
         writeFileMeta(writer, name, originalFilename, contentType);
         try {
             output.write(bytes);
@@ -162,9 +163,9 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
         writer.flush();
     }
 
-    //将元信息写入到writer
+    //将元信息写入到writer，之后调用flush()将信息写入outputStream, name:前台传递进来的form数据的key
     private void writeFileMeta (PrintWriter writer, String name, String fileName, String contentValue) {
-        String contentDesposition = new StringBuilder()
+        String contentDisposition = new StringBuilder()
                 .append("Content-Disposition: form-data; name=\"").append(name).append("\"; ")
                 .append("filename=\"").append(fileName).append("\"")
                 .toString();
@@ -175,7 +176,7 @@ public class MultipartEncodedDataProcessor implements FormDataProcessor{
                 .append("Content-Type: ")
                 .append(contentValue)
                 .toString();
-        writer.append(contentDesposition).append(CRLF);
+        writer.append(contentDisposition).append(CRLF);
         writer.append(contentType).append(CRLF);
         writer.append("Content-Transfer-Encoding: binary").append(CRLF);
         writer.append(CRLF).flush();

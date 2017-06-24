@@ -10,6 +10,7 @@
         <result property="mind" column="C_MIND" jdbcType="VARCHAR"/>
         <result property="content" column="C_CONTENT" jdbcType="VARCHAR"/>
         <result property="weather" column="C_WEATHER" jdbcType="VARCHAR"/>
+        <result property="text" column="C_TEXT" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="tableName">
@@ -25,7 +26,8 @@
         D_CREATE_TIME,
         C_MIND,
         C_CONTENT,
-        C_WEATHER)
+        C_WEATHER,
+        C_TEXT)
         VALUES
         (#{id, jdbcType=CHAR},
         #{diaryId, jdbcType=CHAR},
@@ -33,7 +35,8 @@
         #{createTime, jdbcType=TIMESTAMP},
         #{mind, jdbcType=VARCHAR},
         #{content, jdbcType=VARCHAR},
-        #{weather, jdbcType=VARCHAR})
+        #{weather, jdbcType=VARCHAR},
+        #{text, jdbcType=VARCHAR})
     </insert>
 
     <delete id="deleteBy" parameterType="java.lang.String">

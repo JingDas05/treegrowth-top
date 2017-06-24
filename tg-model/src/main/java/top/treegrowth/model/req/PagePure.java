@@ -26,6 +26,8 @@ public class PagePure implements Serializable {
     private String weather;
     @NotNull(groups = {Create.class})
     private String authorId;
+    // 纯文本字段
+    private String text;
 
     public Page toPage() {
         Page page = new Page();
@@ -34,6 +36,7 @@ public class PagePure implements Serializable {
         page.setMind(this.mind);
         page.setContent(this.content);
         page.setWeather(this.weather);
+        page.setText(this.text);
         return page;
     }
 
@@ -83,5 +86,13 @@ public class PagePure implements Serializable {
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

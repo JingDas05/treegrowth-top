@@ -15,6 +15,8 @@ public class Page {
     private String mind;
     private String content;
     private String weather;
+    // 纯文本字段
+    private String text;
 
     //elastic 过滤字段
     private String authorId;
@@ -81,5 +83,13 @@ public class Page {
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

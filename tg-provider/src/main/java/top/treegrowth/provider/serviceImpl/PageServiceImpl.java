@@ -68,6 +68,9 @@ public class PageServiceImpl implements IPageService {
         page.setId(uuid());
         page.setCreateTime(new Date());
         page.setAuthorId(pagePure.getAuthorId());
+        // 防止富文本编辑器输入过多的空格
+        page.setContent(page.getContent().trim());
+        page.setText(page.getText().trim());
         pageMapper.createPage(page);
 
         sender.send(MessageBuilder.withPayload(page)

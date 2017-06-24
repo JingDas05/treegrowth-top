@@ -34,6 +34,14 @@ spring:
       enabled: true
     job:
       enabled: false
+  http:
+    #配置上传图片大小
+    #If the user needs to be able to upload multiple files in a single request and they may total more than 10Mb,
+    #then you will need to configure multipart.maxRequestSize to a higher value:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 20MB
+
 
 #  jpa:
 #    generate-ddl: true

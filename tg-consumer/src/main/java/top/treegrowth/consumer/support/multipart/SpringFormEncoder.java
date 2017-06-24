@@ -10,6 +10,9 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
+ *
+ * todo feign 远程上传throws exception Current request is not a multipart request,所以暂时改成直接调用 provider 3333端口
+ *
  * Adds support for {@link MultipartFile} type to {@link FormEncoder}.
  *
  * @author Tomasz Juchniewicz <tjuchniewicz@gmail.com>
@@ -17,6 +20,7 @@ import java.util.Map;
  */
 public class SpringFormEncoder extends FormEncoder{
 
+    // 这个地方应用的应该是 SpringEncoder
     private final Encoder delegate;
 
     public SpringFormEncoder () {

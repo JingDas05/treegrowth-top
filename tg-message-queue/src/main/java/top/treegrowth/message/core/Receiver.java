@@ -21,6 +21,8 @@ public class Receiver {
     @KafkaListener(topics = TOPIC, containerFactory = "jsonKafkaListenerContainerFactory")
     public void receiveUserMessage(Page page) {
         IndexInfo indexInfo = new IndexInfo(INDEX, TYPE, page.getId());
+        // 查询的时候用纯文本，所以将content字段(带有html标签)置空，用纯文本字段text
+        page.setContent("");
         elasticService.index(page, indexInfo);
     }
 }

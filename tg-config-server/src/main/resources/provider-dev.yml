@@ -5,6 +5,9 @@ top:
       app-secret: 6da78ba64760f7d1648e196b58b7e18a
       sign-name: 梯局
       template-id: SMS_44440450
+    static-server:
+      uri: http://localhost:5000/
+      data-path: D:/angularjs/
 
 #logging:
 #  level:

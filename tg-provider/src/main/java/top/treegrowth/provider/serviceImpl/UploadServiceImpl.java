@@ -1,5 +1,6 @@
 package top.treegrowth.provider.serviceImpl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import top.treegrowth.provider.service.IUploadService;
@@ -17,6 +18,8 @@ import java.util.List;
 @Service
 public class UploadServiceImpl implements IUploadService{
 
+    @Value(value = "${top.treegrowth.static-server.uri}")
+    private String staticServerUri;
     private static String UPLOADED_FOLDER = "F://temp//";
 
     public void saveUploadedFiles(List<MultipartFile> files) throws IOException {

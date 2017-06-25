@@ -86,4 +86,6 @@ top:
       sign-name: 梯局
       template-id: SMS_44440450
     static-server:
-      uri: 47.93.103.50:5000/
+#      uri: http://47.93.103.50:5000/
+      uri: http://localhost:5000/
+      data-path: D:/angularjs/

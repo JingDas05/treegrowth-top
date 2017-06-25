@@ -7,10 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.treegrowth.model.res.UploadResult;
 import top.treegrowth.provider.service.IUploadService;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -25,16 +27,19 @@ public class UploadApi {
     @Autowired
     private IUploadService uploadService;
 
+    // 这个地方返回值之前用的 ResponseEntity，很好的返回体，但是没有实现 Serializable 接口
     @RequestMapping(value = "/upload", method = POST)
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile uploadFile) {
+    public UploadResult uploadFile(@RequestParam("file") MultipartFile uploadFile) {
+        String httpPath;
         if (uploadFile.isEmpty()) {
-            return new ResponseEntity<>("请选择一个文件", HttpStatus.OK);
+            return null;
         }
         try {
-            uploadService.saveUploadedFiles(Arrays.asList(uploadFile));
+            httpPath = uploadService.saveUploadedFiles(Collections.singletonList(uploadFile));
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
+            return new UploadResult("存储失败");
         }
-        return new ResponseEntity<>("上传成功" + uploadFile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+        return new UploadResult(httpPath);
     }
 }

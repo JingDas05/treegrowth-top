@@ -1,6 +1,7 @@
 package top.treegrowth.provider.service;
 
 import org.springframework.web.multipart.MultipartFile;
+import top.treegrowth.model.res.UploadResult;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,5 +12,5 @@ import java.util.List;
  */
 public interface IUploadService {
 
-    void saveUploadedFiles(List<MultipartFile> files) throws IOException;
+    String saveUploadedFiles(List<MultipartFile> files) throws IOException;
 }

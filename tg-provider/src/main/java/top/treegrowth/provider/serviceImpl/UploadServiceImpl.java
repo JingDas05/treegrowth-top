@@ -56,6 +56,7 @@ public class UploadServiceImpl implements IUploadService {
             fileName = Generator.uuid() + file.getOriginalFilename();
             Path path = Paths.get(finalPath + "/" + fileName);
             Files.write(path, bytes);
+            bytes = null;
         }
         // 目前只上传单个文件，所以只返回一个地址
         return serverProperties.getUri() + subPath + "/" + fileName;

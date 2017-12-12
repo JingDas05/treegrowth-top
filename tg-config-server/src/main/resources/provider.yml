@@ -75,7 +75,8 @@ kafka:
 
 elastic:
   host: 172.17.49.151
-  port: 9300
+#  防止盗取数据，9300修改端口为1265
+  port: 1265
   clusterName: treegrowth
 
 top:

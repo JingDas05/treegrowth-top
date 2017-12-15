@@ -35,10 +35,10 @@ public class DiaryApi {
         return diaryService.createDiary(diaryPure);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //    @PreAuthorize("isAuthenticated()")
     @RequestMapping(method = POST)
     public PageRes<DiaryDetail> getDiaries(@RequestBody DiaryReq diaryReq, @AuthenticationPrincipal TgUser tgUser) {
-        diaryReq.setUserId(tgUser.getId());
+        diaryReq.setUserId(tgUser == null ? null : tgUser.getId());
         return diaryService.getDiaries(diaryReq);
     }
 }

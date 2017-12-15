@@ -38,10 +38,10 @@ public class PageApi {
         return pageService.createPage(pagePure);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/getByPeriod", method = POST)
     public PageRes<PageDetail> getPagesBetween(@RequestBody PagesReq pagesReq, @AuthenticationPrincipal TgUser tgUser) {
-        pagesReq.setUserId(tgUser.getId());
+        pagesReq.setUserId(tgUser == null ? null : tgUser.getId());
         return pageService.getPagesBetween(pagesReq);
     }
 
@@ -52,11 +52,11 @@ public class PageApi {
         return pageService.deletePages(userId, pageId);
     }
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/detail/{pageId}", method = GET)
     public ItemRes<PageDetail> getPageDetailBy(@PathVariable("pageId") String pageId,
                                                @AuthenticationPrincipal TgUser tgUser) {
-        String userId = tgUser.getId();
+        String userId = tgUser == null ? null : tgUser.getId();
         return pageService.getPageDetailBy(userId, pageId);
     }
 }

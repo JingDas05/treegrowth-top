@@ -41,8 +41,8 @@
 
     <delete id="deleteBy" parameterType="java.lang.String">
         DELETE FROM
-        db_blog.t_page as page LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
-        WHERE page.C_ID = #{pageId} AND diary.C_AUTHOR_ID = #{userId}
+            db_blog.t_page AS page LEFT JOIN db_blog.t_diary AS diary ON PAGE.C_DIARY_ID = diary.C_ID
+        WHERE PAGE.C_ID = #{pageId} AND diary.C_AUTHOR_ID = #{userId}
     </delete>
 
     <update id="updateBy" parameterType="top.treegrowth.model.entity.Dream">
@@ -69,9 +69,14 @@
         page.C_WEATHER,
         diary.C_NAME
         FROM
-        db_blog.t_page as page
+        db_blog.t_page AS page
         LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
-        WHERE page.C_ID = #{pageId} AND diary.C_AUTHOR_ID = #{userId}
+        <where>
+            page.C_ID = #{pageId}
+            <if test="userId != null">
+                AND diary.C_AUTHOR_ID = #{userId}
+            </if>
+        </where>
     </select>
 
     <select id="getPagesBetween" resultMap="page">
@@ -86,7 +91,9 @@
         db_blog.t_page as page
         LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
         WHERE
-        diary.C_AUTHOR_ID = #{userId}
+        <if test="userId != null">
+            diary.C_AUTHOR_ID = #{userId}
+        </if>
         <if test="diaryId != null and diaryId != ''">
             AND page.C_DIARY_ID = #{diaryId}
         </if>

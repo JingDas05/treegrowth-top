@@ -83,7 +83,8 @@ public class ElasticServiceImpl<T> implements IElasticService<T> {
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
                 //为了兼容之前的数据，没有去掉 CONTENT
                 .setQuery(multiMatchQuery(queryReq.getKeyword(), NAME, CONTENT, TEXT))
-                .setPostFilter(termQuery(AUTHOR_ID, queryReq.getUserId()))
+                // 全部查出，自己应用
+//                .setPostFilter(termQuery(AUTHOR_ID, queryReq.getUserId()))
                 .setFrom(queryReq.getFrom())
                 .setSize(queryReq.getSize())
                 .highlighter(highlightBuilder)

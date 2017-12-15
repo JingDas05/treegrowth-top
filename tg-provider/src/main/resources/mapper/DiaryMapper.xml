@@ -60,6 +60,8 @@
         select C_ID, C_AUTHOR_ID, C_NAME, D_CREATE_TIME, C_DESCRIPTION
         from
         <include refid="tableName"/>
-        where C_AUTHOR_ID = #{userId}
+        <if test="userId != null">
+            where C_AUTHOR_ID = #{userId}
+        </if>
     </select>
 </mapper>

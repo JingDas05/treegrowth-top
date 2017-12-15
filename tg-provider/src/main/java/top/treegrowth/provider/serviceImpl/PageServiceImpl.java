@@ -87,6 +87,7 @@ public class PageServiceImpl implements IPageService {
         checkState(pages != null, () -> new NotFoundException("没有查询到该日记下的列表"));
         PageInfo<Page> pageInfo = new PageInfo<>(pages);
         List<Page> pageList = pageInfo.getList();
+
         List<PageDetail> pageDetails = pageList.stream()
                 .map(page -> getPageDetail(page, pagesReq.getUserId()))
                 .collect(Collectors.toList());

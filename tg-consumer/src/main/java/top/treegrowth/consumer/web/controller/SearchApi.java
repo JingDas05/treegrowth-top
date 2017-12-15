@@ -25,10 +25,10 @@ public class SearchApi {
     @Autowired
     private SearchService searchService;
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     @RequestMapping(method = POST)
     PageRes<PageDetail> search(@RequestBody QueryReq queryReq, @AuthenticationPrincipal TgUser tgUser) {
-        queryReq.setUserId(tgUser.getId());
+        queryReq.setUserId(tgUser == null ? null : tgUser.getId());
         return searchService.search(queryReq);
     }
 }

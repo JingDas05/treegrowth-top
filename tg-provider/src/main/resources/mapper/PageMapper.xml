@@ -90,16 +90,17 @@
         FROM
         db_blog.t_page as page
         LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
-        WHERE
-        <if test="userId != null">
-            diary.C_AUTHOR_ID = #{userId}
-        </if>
-        <if test="diaryId != null and diaryId != ''">
-            AND page.C_DIARY_ID = #{diaryId}
-        </if>
-        <if test="startTime != null and endTime != null">
-            AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
-        </if>
+        <where>
+            <if test="userId != null">
+                diary.C_AUTHOR_ID = #{userId}
+            </if>
+            <if test="diaryId != null and diaryId != ''">
+                AND page.C_DIARY_ID = #{diaryId}
+            </if>
+            <if test="startTime != null and endTime != null">
+                AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+            </if>
+        </where>
         ORDER BY D_CREATE_TIME DESC
     </select>
 </mapper>

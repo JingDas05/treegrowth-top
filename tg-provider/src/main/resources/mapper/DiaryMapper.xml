@@ -53,7 +53,12 @@
         select C_ID, C_AUTHOR_ID, C_NAME, D_CREATE_TIME, C_DESCRIPTION
         from
         <include refid="tableName"/>
-        where C_ID = #{diaryId} AND C_AUTHOR_ID = #{userId}
+        <where>
+            C_ID = #{diaryId}
+            <if test="userId != null">
+                AND C_AUTHOR_ID = #{userId}
+            </if>
+        </where>
     </select>
 
     <select id="getDiaries" parameterType="java.lang.String" resultMap="diary">

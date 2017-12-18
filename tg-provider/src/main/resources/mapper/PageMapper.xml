@@ -73,7 +73,7 @@
         LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
         <where>
             page.C_ID = #{pageId}
-            <if test="userId != null">
+            <if test="userId != null and userId != ''">
                 AND diary.C_AUTHOR_ID = #{userId}
             </if>
         </where>

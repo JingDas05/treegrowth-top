@@ -4,6 +4,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import top.treegrowth.model.req.PagePure;
 import top.treegrowth.model.req.PagesReq;
 import top.treegrowth.model.res.*;
@@ -31,6 +32,7 @@ public interface PageService {
     @RequestMapping(value = "/delete/{userId}/{pageId}", method = POST)
     ItemRes<Boolean> deletePages(@PathVariable("userId") String userId, @PathVariable("pageId") String pageId);
 
-    @RequestMapping(value = "/{userId}/{pageId}", method = GET)
-    ItemRes<PageDetail> getPageDetailBy(@PathVariable("userId") String userId, @PathVariable("pageId") String pageId);
+    @RequestMapping(value = "/detail", method = GET)
+    ItemRes<PageDetail> getPageDetailBy(@RequestParam("userId") String userId,
+                                        @RequestParam("pageId") String pageId);
 }

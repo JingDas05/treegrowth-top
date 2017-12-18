@@ -1,10 +1,7 @@
 package top.treegrowth.provider.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.treegrowth.model.req.PagePure;
 import top.treegrowth.model.req.PagesReq;
 import top.treegrowth.model.res.*;
@@ -35,12 +32,14 @@ public class PageApi {
     }
 
     @RequestMapping(value = "/delete/{userId}/{pageId}", method = POST)
-    public ItemRes<Boolean> deletePages(@PathVariable("userId") String userId, @PathVariable("pageId") String pageId) {
+    public ItemRes<Boolean> deletePages(@PathVariable("userId") String userId,
+                                        @PathVariable("pageId") String pageId) {
         return pageService.deleteBy(userId, pageId);
     }
 
-    @RequestMapping(value = "/{userId}/{pageId}", method = GET)
-    public ItemRes<PageDetail> getPageDetailBy(@PathVariable("userId") String userId, @PathVariable("pageId") String pageId) {
+    @RequestMapping(value = "/detail", method = GET)
+    public ItemRes<PageDetail> getPageDetailBy(@RequestParam("userId") String userId,
+                                               @RequestParam("pageId") String pageId) {
         return pageService.getPageDetailBy(userId, pageId);
     }
 }

@@ -55,7 +55,7 @@
         <include refid="tableName"/>
         <where>
             C_ID = #{diaryId}
-            <if test="userId != null">
+            <if test="userId != null and userId != ''">
                 AND C_AUTHOR_ID = #{userId}
             </if>
         </where>

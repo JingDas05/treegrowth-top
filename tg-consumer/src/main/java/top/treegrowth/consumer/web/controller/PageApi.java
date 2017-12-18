@@ -56,7 +56,7 @@ public class PageApi {
     @RequestMapping(value = "/detail/{pageId}", method = GET)
     public ItemRes<PageDetail> getPageDetailBy(@PathVariable("pageId") String pageId,
                                                @AuthenticationPrincipal TgUser tgUser) {
-        String userId = tgUser == null ? null : tgUser.getId();
+        String userId = tgUser == null ? "" : tgUser.getId();
         return pageService.getPageDetailBy(userId, pageId);
     }
 }

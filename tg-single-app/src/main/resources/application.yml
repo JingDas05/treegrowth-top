@@ -1,4 +1,6 @@
 spring:
+  application:
+      name: singleapp
   datasource:
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://172.17.49.151:5432/tg
@@ -45,7 +47,7 @@ spring:
 #      ddl-auto: update
 
 server:
-  port: 98765
+  port: 3333
 
 mybatis:
 #    type-aliases-package: top.treegrowth.model.entity

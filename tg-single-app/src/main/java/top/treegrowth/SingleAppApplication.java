@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * @author wusi
  */
-
 @SpringBootApplication
 @EnableTransactionManagement
 public class SingleAppApplication {

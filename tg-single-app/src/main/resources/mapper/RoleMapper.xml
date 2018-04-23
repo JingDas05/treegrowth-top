@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.treegrowth.provider.dao.mapper.RoleMapper">
+
+    <resultMap id="role" type="top.treegrowth.model.entity.Role">
+        <id property="id" column="C_ID" jdbcType="CHAR"/>
+        <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
+        <result property="authorityId" column="C_AUTHORITY_ID" jdbcType="VARCHAR"/>
+        <result property="code" column="C_CODE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="tableName">
+        db_user.t_role
+    </sql>
+
+    <select id="getRoleByCode" parameterType="java.lang.String" resultMap="role">
+        select C_ID, C_NAME, C_AUTHORITY_ID, C_CODE
+        from
+        <include refid="tableName"/>
+        where C_ID = #{userId}
+    </select>
+
+</mapper>

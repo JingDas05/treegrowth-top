@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.treegrowth.provider.dao.mapper.DiaryMapper">
+
+    <resultMap id="diary" type="top.treegrowth.model.entity.Diary">
+        <id property="id" column="C_ID" jdbcType="CHAR"/>
+        <result property="authorId" column="C_AUTHOR_ID" jdbcType="CHAR"/>
+        <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
+        <result property="createTime" column="D_CREATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="description" column="C_DESCRIPTION" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="tableName">
+        db_blog.t_diary
+    </sql>
+
+    <insert id="createDiary" parameterType="top.treegrowth.model.entity.Diary">
+        INSERT INTO
+        <include refid="tableName"/>
+        (C_ID,
+        C_AUTHOR_ID,
+        C_NAME,
+        D_CREATE_TIME,
+        C_DESCRIPTION)
+        VALUES
+        (#{id, jdbcType=CHAR},
+        #{authorId, jdbcType=CHAR},
+        #{name, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{description, jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteBy">
+        delete from
+        <include refid="tableName"/>
+        where C_ID = #{id}
+    </delete>
+
+    <update id="updateDiary" parameterType="top.treegrowth.model.entity.Dream">
+        update
+        <include refid="tableName"/>
+        set
+        C_ID = #{id, jdbcType=CHAR},
+        C_AUTHOR_ID = #{authorId, jdbcType=CHAR},
+        C_NAME = #{name, jdbcType=VARCHAR},
+        C_CONTENT = #{content, jdbcType=VARCHAR}
+        D_CREATE_TIME = #{createTime, jdbcType=TIMESTAMP}
+        C_DESCRIPTION = #{description, jdbcType=VARCHAR}
+        where C_ID = #{id}
+    </update>
+
+    <select id="getDiaryBy" parameterType="java.lang.String" resultMap="diary">
+        select C_ID, C_AUTHOR_ID, C_NAME, D_CREATE_TIME, C_DESCRIPTION
+        from
+        <include refid="tableName"/>
+        <where>
+            C_ID = #{diaryId}
+            <if test="userId != null and userId != ''">
+                AND C_AUTHOR_ID = #{userId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getDiaries" parameterType="java.lang.String" resultMap="diary">
+        select C_ID, C_AUTHOR_ID, C_NAME, D_CREATE_TIME, C_DESCRIPTION
+        from
+        <include refid="tableName"/>
+        <if test="userId != null">
+            where C_AUTHOR_ID = #{userId}
+        </if>
+    </select>
+</mapper>

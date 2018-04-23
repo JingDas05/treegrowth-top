@@ -1,0 +1,67 @@
+spring:
+  datasource:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://172.17.49.151:5432/tg
+      username: wusi
+      password: 666666
+  redis:
+#      cluster:
+#        nodes:
+#            - 172.18.12.125:6379
+#            - 172.18.12.126:6379
+#            - 172.18.12.128:6379
+      # Redis数据库索引（默认为0）
+      database: 0
+      # Redis服务器地址
+      host: 172.17.49.151
+      # Redis服务器连接端口
+      port: 6379
+      # Redis服务器连接密码（默认为空）
+      #password:
+      # 连接池最大连接数（使用负值表示没有限制）
+      pool:
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+      # 连接超时时间（毫秒）
+      timeout: 0
+  http:
+    #配置上传图片大小
+    #If the user needs to be able to upload multiple files in a single request and they may total more than 10Mb,
+    #then you will need to configure multipart.maxRequestSize to a higher value:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 20MB
+
+
+#  jpa:
+#    generate-ddl: true
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+
+server:
+  port: 98765
+
+mybatis:
+#    type-aliases-package: top.treegrowth.model.entity
+    mapper-locations: classpath*:/mapper/*.xml
+
+pagehelper:
+    helperDialect: postgresql
+
+kafka:
+  broker:
+    address: 172.17.49.151:9092
+  topic: page
+
+elastic:
+  host: 172.17.49.151
+#  防止盗取数据，9300修改端口为1265
+  port: 1265
+  clusterName: treegrowth
+

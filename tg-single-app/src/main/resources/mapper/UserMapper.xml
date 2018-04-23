@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.treegrowth.provider.dao.mapper.UserMapper">
+
+    <resultMap id="user" type="top.treegrowth.model.entity.User">
+        <id property="id" column="C_ID" jdbcType="CHAR"/>
+        <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
+        <result property="password" column="C_PASSWORD" jdbcType="VARCHAR"/>
+        <result property="phone" column="C_PHONE" jdbcType="VARCHAR"/>
+        <result property="roleId" column="C_ROLE_ID" jdbcType="CHAR"/>
+        <result property="registerTime" column="D_REGISTER_TIME" jdbcType="TIMESTAMP"/>
+        <result property="email" column="C_EMAIL" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="tableName">
+        db_user.t_user
+    </sql>
+
+    <insert id="createUser" parameterType="top.treegrowth.model.entity.User">
+        INSERT INTO
+        <include refid="tableName"/>
+        (C_ID,
+        C_ROLE_ID,
+        C_NAME,
+        C_PHONE,
+        C_PASSWORD,
+        D_REGISTER_TIME,
+        C_EMAIL)
+        VALUES
+        (#{id, jdbcType=CHAR},
+        #{roleId, jdbcType=CHAR},
+        #{name, jdbcType=VARCHAR},
+        #{phone, jdbcType=VARCHAR},
+        #{password, jdbcType=VARCHAR},
+        #{registerTime, jdbcType=TIMESTAMP},
+        #{email, jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteUserBy">
+        delete from
+        <include refid="tableName"/>
+        where C_ID = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="top.treegrowth.model.entity.User">
+        update
+        <include refid="tableName"/>
+        set
+        C_ID = #{id, jdbcType=CHAR},
+        C_ROLE_ID = #{roleId, jdbcType=CHAR},
+        C_NAME = #{name, jdbcType=VARCHAR},
+        C_PHONE = #{phone, jdbcType=VARCHAR},
+        C_PASSWORD = #{password, jdbcType=VARCHAR},
+        D_REGISTER_TIME = #{registerTime, jdbcType=TIMESTAMP},
+        C_EMAIL = #{email, jdbcType=VARCHAR}
+        where C_ID = #{id}
+    </update>
+
+
+    <select id="getUserBy" parameterType="java.lang.String" resultMap="user">
+        select C_ID, C_ROLE_ID, C_NAME, C_PHONE, C_PASSWORD, D_REGISTER_TIME, C_EMAIL
+        from
+        <include refid="tableName"/>
+        where C_ID = #{userId}
+    </select>
+
+    <select id="getUserByPhone" parameterType="java.lang.String" resultMap="user">
+        select C_ID, C_ROLE_ID, C_NAME, C_PHONE, C_PASSWORD, D_REGISTER_TIME, C_EMAIL
+        from
+        <include refid="tableName"/>
+        where C_PHONE = #{phone}
+    </select>
+
+    <select id="getUsers" resultMap="user">
+        select C_ID, C_ROLE_ID, C_NAME, C_PHONE, C_PASSWORD, D_REGISTER_TIME, C_EMAIL
+        from
+        <include refid="tableName"/>
+    </select>
+</mapper>

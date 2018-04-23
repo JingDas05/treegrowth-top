@@ -33,11 +33,11 @@
         </dependency>
 
         <!--短信验证码，阿里大于-->
-        <dependency>
-            <groupId>top.treegrowth</groupId>
-            <artifactId>alibaba-dy-sms</artifactId>
-            <version>${albaba-dayu.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>top.treegrowth</groupId>-->
+        <!--<artifactId>alibaba-dy-sms</artifactId>-->
+        <!--<version>${albaba-dayu.version}</version>-->
+        <!--</dependency>-->
 
         <!--spring-cloud-->
         <dependency>
@@ -101,23 +101,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-batch</artifactId>
-        </dependency>
-        <!--hadoop-->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-hadoop</artifactId>
-            <version>2.5.0.M1</version>
-            <!--为了避免启动报错,与elasticsearch冲突了,child Container，注释掉了与netty相关的依赖-->
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-all</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!--config-->
         <dependency>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.treegrowth.provider.dao.mapper.PageMapper">
+
+    <resultMap id="page" type="top.treegrowth.model.entity.Page">
+        <id property="id" column="C_ID" jdbcType="CHAR"/>
+        <result property="diaryId" column="C_DIARY_ID" jdbcType="CHAR"/>
+        <result property="name" column="C_NAME" jdbcType="VARCHAR"/>
+        <result property="createTime" column="D_CREATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="mind" column="C_MIND" jdbcType="VARCHAR"/>
+        <result property="content" column="C_CONTENT" jdbcType="VARCHAR"/>
+        <result property="weather" column="C_WEATHER" jdbcType="VARCHAR"/>
+        <result property="text" column="C_TEXT" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="tableName">
+        db_blog.t_page
+    </sql>
+
+    <insert id="createPage" parameterType="top.treegrowth.model.entity.Page">
+        INSERT INTO
+        <include refid="tableName"/>
+        (C_ID,
+        C_DIARY_ID,
+        C_NAME,
+        D_CREATE_TIME,
+        C_MIND,
+        C_CONTENT,
+        C_WEATHER,
+        C_TEXT)
+        VALUES
+        (#{id, jdbcType=CHAR},
+        #{diaryId, jdbcType=CHAR},
+        #{name, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{mind, jdbcType=VARCHAR},
+        #{content, jdbcType=VARCHAR},
+        #{weather, jdbcType=VARCHAR},
+        #{text, jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteBy" parameterType="java.lang.String">
+        DELETE FROM
+            db_blog.t_page AS page LEFT JOIN db_blog.t_diary AS diary ON PAGE.C_DIARY_ID = diary.C_ID
+        WHERE PAGE.C_ID = #{pageId} AND diary.C_AUTHOR_ID = #{userId}
+    </delete>
+
+    <update id="updateBy" parameterType="top.treegrowth.model.entity.Dream">
+        update
+        <include refid="tableName"/>
+        set
+        C_ID = #{id, jdbcType=CHAR},
+        C_CREATE_USER_ID = #{authorId, jdbcType=CHAR},
+        C_NAME = #{name, jdbcType=VARCHAR},
+        C_CONTENT = #{content, jdbcType=VARCHAR}
+        D_CREATE_TIME = #{createTime, jdbcType=TIMESTAMP}
+        C_DESCRIPTION = #{description, jdbcType=VARCHAR}
+        where C_ID = #{id}
+    </update>
+
+    <select id="getPageBy" parameterType="java.lang.String" resultMap="page">
+        SELECT
+        page.C_ID,
+        page.C_DIARY_ID,
+        page.C_NAME,
+        page.D_CREATE_TIME,
+        page.C_MIND,
+        page.C_CONTENT,
+        page.C_WEATHER,
+        diary.C_NAME
+        FROM
+        db_blog.t_page AS page
+        LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
+        <where>
+            page.C_ID = #{pageId}
+            <if test="userId != null and userId != ''">
+                AND diary.C_AUTHOR_ID = #{userId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getPagesBetween" resultMap="page">
+        SELECT page.C_ID,
+        page.C_DIARY_ID,
+        page.C_NAME,
+        page.D_CREATE_TIME,
+        page.C_MIND,
+        page.C_CONTENT,
+        page.C_WEATHER
+        FROM
+        db_blog.t_page as page
+        LEFT JOIN db_blog.t_diary AS diary ON page.C_DIARY_ID = diary.C_ID
+        <where>
+            <if test="userId != null">
+                diary.C_AUTHOR_ID = #{userId}
+            </if>
+            <if test="diaryId != null and diaryId != ''">
+                AND page.C_DIARY_ID = #{diaryId}
+            </if>
+            <if test="startTime != null and endTime != null">
+                AND page.D_CREATE_TIME BETWEEN #{startTime} AND #{endTime}
+            </if>
+        </where>
+        ORDER BY D_CREATE_TIME DESC
+    </select>
+</mapper>

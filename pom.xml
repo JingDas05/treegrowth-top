@@ -37,6 +37,7 @@
         <module>tg-message-queue</module>
         <module>tg-elasticsearch</module>
         <module>tg-gateway</module>
+        <module>tg-single-app</module>
     </modules>
 
     <name>tg-parent</name>

@@ -1,10 +1,5 @@
 package top.treegrowth.provider.serviceImpl;
 
-import com.taobao.api.ApiException;
-import com.taobao.api.DefaultTaobaoClient;
-import com.taobao.api.TaobaoClient;
-import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
-import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -39,20 +34,6 @@ public class CodeServiceImpl implements ICodeService {
 
     @Override
     public void sendIdentifyCode(String phone, String code) throws ServiceException {
-        String cachedCode = redisDao.getIdentifyCode(phone);
-        checkState(isNullOrEmpty(cachedCode), () -> new ForbiddenException("验证码已存在，请等待600s"));
-        TaobaoClient client = new DefaultTaobaoClient(url, key, secret);
-        AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
-        req.setSmsType(smsType);
-        req.setSmsFreeSignName(signName);
-        req.setSmsParamString("{\"code\":\"" + code + "\"}");
-        req.setRecNum(phone);
-        req.setSmsTemplateCode(templateId);
-        AlibabaAliqinFcSmsNumSendResponse rsp;
-        try {
-            rsp = client.execute(req);
-        } catch (ApiException e) {
-            throw new AaliApiException("发送验证码失败", e);
-        }
+
     }
 }

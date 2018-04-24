@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @version 2017/2/7.
  */
 @RestController
-@RequestMapping("api/service/users")
+@RequestMapping("api/users")
 public class UserApi {
 
     @Autowired

@@ -67,3 +67,20 @@ elastic:
   port: 1265
   clusterName: treegrowth
 
+tg:
+  token:
+    header: X-Auth-Token
+    secret: 01090109qweasdzxc
+    expiration: 1800
+  route:
+    login: login
+    logout: logout
+    refresh: refresh
+    protected: protected
+
+top:
+  treegrowth:
+    static-server:
+      uri: http://47.93.103.50:5000/
+      data-path: /opt/static-server/data/
+

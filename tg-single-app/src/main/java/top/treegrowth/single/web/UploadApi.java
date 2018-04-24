@@ -18,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @version 2017/6/21 21:36.
  */
 @RestController
-@RequestMapping(value = "api/service")
+@RequestMapping(value = "api")
 public class UploadApi {
 
     @Autowired

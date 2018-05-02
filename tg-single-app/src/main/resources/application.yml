@@ -4,6 +4,7 @@ spring:
   datasource:
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://172.17.49.151:5432/tg
+#      url: jdbc:postgresql://localhost:5432/tg
       username: wusi
       password: 666666
   redis:
@@ -81,6 +82,6 @@ tg:
 top:
   treegrowth:
     static-server:
-      uri: http://47.93.103.50:5000/
+      uri: http://172.17.49.151:5000/
       data-path: /opt/static-server/data/
 

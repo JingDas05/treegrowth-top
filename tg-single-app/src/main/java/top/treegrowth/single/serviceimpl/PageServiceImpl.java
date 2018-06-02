@@ -3,12 +3,11 @@ package top.treegrowth.single.serviceimpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import top.treegrowth.message.core.Sender;
+import top.treegrowth.es.service.IElasticService;
+import top.treegrowth.model.elastic.IndexInfo;
 import top.treegrowth.model.entity.Diary;
 import top.treegrowth.model.entity.Page;
 import top.treegrowth.model.req.PagePure;
@@ -27,7 +26,8 @@ import java.util.stream.Collectors;
 
 import static top.treegrowth.common.utils.Conditions.checkState;
 import static top.treegrowth.common.utils.Generator.uuid;
-import static top.treegrowth.message.core.Receiver.TOPIC;
+import static top.treegrowth.es.ElasticServiceImpl.INDEX;
+import static top.treegrowth.es.ElasticServiceImpl.TYPE;
 
 /**
  * @author wusi
@@ -41,7 +41,7 @@ public class PageServiceImpl implements IPageService {
     @Autowired
     private DiaryMapper diaryMapper;
     @Autowired
-    private Sender sender;
+    private IElasticService<Page> elasticService;
 
     public PageDetail getPageDetail(Page page, String userId) {
         PageDetail pageDetail = new PageDetail();
@@ -75,9 +75,13 @@ public class PageServiceImpl implements IPageService {
         page.setText(page.getText().trim());
         pageMapper.createPage(page);
 
-        sender.send(MessageBuilder.withPayload(page)
-                .setHeader(KafkaHeaders.TOPIC, TOPIC)
-                .build());
+//        sender.send(MessageBuilder.withPayload(page)
+//                .setHeader(KafkaHeaders.TOPIC, TOPIC)
+//                .build());
+        IndexInfo indexInfo = new IndexInfo(INDEX, TYPE, page.getId());
+        // 查询的时候用纯文本，所以将content字段(带有html标签)置空，用纯文本字段text
+        page.setContent("");
+        elasticService.index(page, indexInfo);
 
         return getPageDetail(page, pagePure.getAuthorId());
     }

@@ -17,10 +17,10 @@
             <groupId>top.treegrowth</groupId>
             <artifactId>tg-redis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>top.treegrowth</groupId>
-            <artifactId>tg-message-queue</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>top.treegrowth</groupId>-->
+            <!--<artifactId>tg-message-queue</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>top.treegrowth</groupId>
             <artifactId>tg-common</artifactId>

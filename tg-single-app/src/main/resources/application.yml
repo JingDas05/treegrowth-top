@@ -57,10 +57,10 @@ mybatis:
 pagehelper:
     helperDialect: postgresql
 
-kafka:
-  broker:
-    address: 172.17.49.151:9092
-  topic: page
+#kafka:
+#  broker:
+#    address: 172.17.49.151:9092
+#  topic: page
 
 elastic:
   host: 172.17.49.151
